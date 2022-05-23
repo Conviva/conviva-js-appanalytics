@@ -1,0 +1,21 @@
+{
+  "name": "@convivainc/conviva-js-appanalytics",
+  "version": "0.2.1",
+  "description": "Conviva Application Analytics library",
+  "main": "at_0.2.1.js",
+  "repository": {
+    "type": "git",
+    "url": "git+github.com:Conviva/conviva-js-appanalytics.git"
+  },
+  "keywords": [
+    "Conviva",
+    "Application",
+    "Analytics"
+  ],
+  "author": "Conviva Inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Conviva/conviva-js-appanalytics/issues"
+  },
+  "homepage": "https://github.com/Conviva/conviva-js-appanalytics#readme",
+}
