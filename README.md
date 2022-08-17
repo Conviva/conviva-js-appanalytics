@@ -75,7 +75,7 @@ let custom_data = "{\"identifier1\": \"test\",\"identifier2\": 1,\"identifier3\"
 trackCustomEvent({
   name: "custom_event_name",
   data: custom_data
-}. ['CAT']);
+}, ['CAT']);
 ```
 
 ## Note:
