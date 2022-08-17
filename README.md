@@ -20,7 +20,7 @@ Import the required packages into your project:
 import { convivaAppTracker, trackPageView, enableActivityTracking, trackCustomEvent, setUserId, trackStructEvent } from '@convivainc/conviva-js-appanalytics';
 import { PerformanceTimingPlugin } from '@convivainc/conviva-js-appanalytics-performance-timing';
 import { ErrorTrackingPlugin, enableErrorTracking } from '@convivainc/conviva-js-appanalytics-error-tracking';
-import { LinkClickTrackingPlugin, enableLinkClickTracking, ButtonClickTrackingPlugin, enableButtonClickTracking } from '@convivainc/conviva-js-appanalytics-click-tracking';
+import { LinkClickTrackingPlugin, enableLinkClickTracking, enableButtonClickTracking } from '@convivainc/conviva-js-appanalytics-click-tracking';
 
 ```
 
@@ -33,7 +33,7 @@ convivaAppTracker({
   contexts: {
       performanceTiming: true
   },
-  plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin()]
+  plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin(), LinkClickTrackingPlugin()]
 });
 
 ```
@@ -50,32 +50,8 @@ enableActivityTracking({
   heartbeatDelay: 40 //can be customized upon the customer’s business logic
 });
 trackPageView();
-
-```
-
-## Extend tracking to track your application specific events and state changes
-Use trackStructEvent event type to track all kinds of events. This event type provides 5 fields to describe the tracked events. The semantics of the values for these 5 fields are flexible and could be customized.
-
-category - Define a broad classification of categories for various types of events, such as button, user actions, state, etc.
-
-action - Define the type of action. For example, click, scroll, submit, add to cart, etc.
-
-label - Label the item under the action or subject of the action.
-
-property - Define the properties associated with the event.
-
-value - Define the value (float number). For example, scroll position, total number of items added to a cart, etc.
-
-The following example shows the implementation of the 'on click' event listener to any element on the web page. The category is button, label is the rendered text of the clicked button, and property is a list of classes.
-
-```js
-trackStructEvent({
-   category: 'subscription',
-   action: 'purchase',
-   label:'success',
-   property:'1-year',
-   value: 250.00
-});
+enableLinkClickTracking(); // Tracks all link clicks on the page
+enableButtonClickTracking();
 ```
 
 ## Enable Error Tracking
@@ -99,7 +75,7 @@ let custom_data = "{\"identifier1\": \"test\",\"identifier2\": 1,\"identifier3\"
 trackCustomEvent({
   name: "custom_event_name",
   data: custom_data
-}. ['CAT']);
+}, ['CAT']);
 ```
 
 ## Note:
