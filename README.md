@@ -17,7 +17,7 @@ yarn add @convivainc/conviva-js-appanalytics
 ## Import to you project
 Import the required packages into your project:
 ```js
-import { convivaAppTracker, trackPageView, enableActivityTracking, trackCustomEvent, setUserId, trackStructEvent } from '@convivainc/conviva-js-appanalytics';
+import { convivaAppTracker, trackPageView, trackCustomEvent, setUserId } from '@convivainc/conviva-js-appanalytics';
 import { PerformanceTimingPlugin } from '@convivainc/conviva-js-appanalytics-performance-timing';
 import { ErrorTrackingPlugin, enableErrorTracking } from '@convivainc/conviva-js-appanalytics-error-tracking';
 import { LinkClickTrackingPlugin, enableLinkClickTracking, enableButtonClickTracking } from '@convivainc/conviva-js-appanalytics-click-tracking';
@@ -43,13 +43,13 @@ convivaAppTracker({
 setUserId('replace_me_by_the_userId');
 ```
 
-## Enable autocollection
+## Report Page View for tracking in-app page navigations.
 ```js
-enableActivityTracking({
-  minimumVisitLength: 2, // can be customized upon the customer’s business logic
-  heartbeatDelay: 40 //can be customized upon the customer’s business logic
-});
 trackPageView();
+```
+
+## Enable autocollection of link & button clicks
+```js
 enableLinkClickTracking(); // Tracks all link clicks on the page
 enableButtonClickTracking();
 ```
