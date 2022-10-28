@@ -79,4 +79,4 @@ trackCustomEvent({
 ```
 
 ## Note:
-* Refer [https://pulse.conviva.com/learning-center/content/sensor_developer_center/sensor_integration/javascript/application_analytics/js_application_analytics.htm](https://pulse.conviva.com/learning-center/content/sensor_developer_center/sensor_integration/javascript/application_analytics/js_application_analytics.htm) for integration guidelines.
+For Script based integrations, please refer [https://github.com/Conviva/conviva-js-script-appanalytics](https://github.com/Conviva/conviva-js-script-appanalytics) for integration guidelines.
