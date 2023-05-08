@@ -25,11 +25,14 @@ import { LinkClickTrackingPlugin, enableLinkClickTracking, enableButtonClickTrac
 ```
 
 ## Initialization
+Init the SDK with appId, customerKey and optional parameters. 
+- appId: set this to your understandable application name, reflecting the platform and brand of your app. As an example: "WEB App", "LGTV Web App".
+- convivaCustomerKey: the unique string identifier for your Conviva account. Provided by Conviva / can be obtained in the Conviva Pulse dashboard. 
 
 ```js
 convivaAppTracker({
-  appId: '{{YOUR_APP_ID_ADVISED_BY_Conviva}}',
-  convivaCustomerKey: '{{YOUR_CUSTOMER_KEY_ADVISED_BY_Conviva}}',
+  appId: 'YOUR_APP_NAME_AS_STRING',
+  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
   contexts: {
       performanceTiming: true
   },
