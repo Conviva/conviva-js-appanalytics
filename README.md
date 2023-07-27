@@ -82,11 +82,10 @@ trackCustomEvent({
 ```
 
 ## Setting / Unsetting Custom tags to report your application specific data.
-Use setCustomTags() API to set all kinds of tags (key value pairs). This API provides 1 argument to describe the tags.
+Use setCustomTags() API to set all kinds of tags (key value pairs). This API provides 1 argument that accepts data in JSON Format to describe the tags.
 
-data - Any type of data in JSON format.
-
-The following example shows the implementation of the 'onClick' event listener to any element.
+The following example shows the implementation of setting custom tags.
+In this example we have 3 different tags tagKey1, tagKey2, tagKey3 with 3 different values.
 
 ```js
 let customTagsToSet = {"tagKey1": "tagValue1","tagKey2": 1,"tagKey3":true};
@@ -96,9 +95,7 @@ setCustomTags(customTagsToSet);
 
 Use unsetCustomTags() API to unset or remove that were already set. This API provides 1 argument to describe an array of tag keys to unset.
 
-keys - Array of strings representing tag keys.
-
-The following example shows the implementation of the 'onClick' event listener to any element.
+The following example shows the implementation of unset or remove custom tags.
 ```js
 let customTagsToUnset = ['tagKey2', 'tagKey3'];
 unsetCustomTags(customTagsToUnset);
