@@ -5,9 +5,6 @@ Conviva Use Application Analytics to autocollect events and track application sp
 
 ```
 npm install @convivainc/conviva-js-appanalytics
-npm install @convivainc/conviva-js-appanalytics-performance-timing
-npm install @convivainc/conviva-js-appanalytics-error-tracking
-npm install @convivainc/conviva-js-appanalytics-click-tracking
 ```
 
 ```

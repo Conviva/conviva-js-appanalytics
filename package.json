@@ -1,8 +1,13 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "0.3.27",
+  "version": "0.3.29",
   "description": "Conviva Application Analytics library",
   "main": "conviva-js-appanalytics.js",
+  "dependencies": {
+    "@convivainc/conviva-js-appanalytics-click-tracking": "^0.3.8",
+    "@convivainc/conviva-js-appanalytics-error-tracking": "^0.3.8",
+    "@convivainc/conviva-js-appanalytics-performance-timing": "^0.3.9"
+  },
   "repository": {
     "type": "git",
     "url": "git+github.com:Conviva/conviva-js-appanalytics.git"
