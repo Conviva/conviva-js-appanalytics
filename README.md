@@ -65,7 +65,7 @@ Use trackCustomEvent() API to track all kinds of events. This API provides 2 fie
 
 name - Name of the custom event.
 
-data - Any type of data .
+data - Any type of data in json format.
 
 The following example shows the data in JSON format.
 
