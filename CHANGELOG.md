@@ -1,5 +1,10 @@
 
 # Changelog
+## 0.3.34 (19/OCT/2023)
+* Fixes issue in linkClickTracking & buttonClickTracking generating lots of console errors due to internal initialization sequence.
+* Fixes and stops reporting exceptions / errors containing no information, status code and stacktrace. Such as browser errors caused due to extensions.
+* Removed the dependency on "Request()" API while tracking network requests to avoid side effects of API compatibility to affect xhr or fetch API calls in application.
+
 ## 0.3.32 (06/OCT/2023)
 * Supports the trackCustomEvent() with JSON Object as an argument
 * Enhances default blocklist for Network Request Tracking
