@@ -1,5 +1,8 @@
 
 # Changelog
+## 0.4.3 (27/OCT/2023)
+* Enhances network requests & response collection feature to capture limited (json only, size limit 10kb) and controlled set of information from headers and body.
+
 ## 0.3.34 (19/OCT/2023)
 * Fixes issue in linkClickTracking & buttonClickTracking generating lots of console errors due to internal initialization sequence.
 * Fixes and stops reporting exceptions / errors containing no information, status code and stacktrace. Such as browser errors caused due to extensions.
