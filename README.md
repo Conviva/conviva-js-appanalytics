@@ -116,11 +116,13 @@ unsetCustomTags(customTagsToUnset);
     
 ##### Conviva provides a rich set of application performance metrics with the help of autocollected app events, such as _button_click_, and _network_request_.
 
-  * network_request - after receiving the network request response
-  * page_ping - Max X and Y scroll positions difference comparing to the last event
-  * application_error - when an error occurrs in the application
-  * button_click - on the button click callback
-  * link_click -  on the link click callback
+Event | Occurrence |
+------|------------|
+network_request | after receiving the network request response |
+page_ping | Max X and Y scroll positions difference comparing to the last event|
+application_error | when an error occurrs in the application|
+button_click | on the button click callback|
+link_click | on the link click callback|
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/app_experience/app_experience_metrics.html?tocpath=App%20Experience%7C_____8) page in the Learning Center.
 </details>
