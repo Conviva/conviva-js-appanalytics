@@ -2,7 +2,7 @@
 # Changelog
 ## 0.4.4 (15/DEC/2023)
 * Added typescript support.
-* Fixes issue of handling input to fetch api when input is instance of Request object instead of url string.
+* Fixes issue of handling input to fetch api when input is instance of Request object instead of url string during network request tracking.
 
 ## 0.4.3 (27/OCT/2023)
 * Enhances network requests & response collection feature to capture limited (json only, size limit 10kb) and controlled set of information from headers and body.
