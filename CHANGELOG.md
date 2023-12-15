@@ -1,5 +1,8 @@
 
 # Changelog
+## 0.4.4 (15/DEC/2023)
+* Fixes issue of handling input to fetch api when input is instance of Request object instead of url string.
+
 ## 0.4.3 (27/OCT/2023)
 * Enhances network requests & response collection feature to capture limited (json only, size limit 10kb) and controlled set of information from headers and body.
 
