@@ -1,6 +1,7 @@
 
 # Changelog
 ## 0.4.4 (15/DEC/2023)
+* Added typescript support.
 * Fixes issue of handling input to fetch api when input is instance of Request object instead of url string.
 
 ## 0.4.3 (27/OCT/2023)
