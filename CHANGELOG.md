@@ -1,5 +1,8 @@
 
 # Changelog
+## 0.4.5 (02/JAN/2024)
+* Fixes issue of reporting incorrect app video bounce rate metric because conviva video event being dropped when video session id is negative.
+
 ## 0.4.4 (15/DEC/2023)
 * Added typescript support.
 * Fixes issue of handling input to fetch api when input is instance of Request object instead of url string during network request tracking.
