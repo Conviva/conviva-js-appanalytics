@@ -1,10 +1,10 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "Conviva Application Analytics library",
   "main": "conviva-js-appanalytics.js",
   "dependencies": {
-    "@convivainc/conviva-js-appanalytics-click-tracking": "^0.3.9",
+    "@convivainc/conviva-js-appanalytics-click-tracking": "^0.3.10",
     "@convivainc/conviva-js-appanalytics-error-tracking": "^0.3.9",
     "@convivainc/conviva-js-appanalytics-performance-timing": "^0.3.9"
   },
