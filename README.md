@@ -121,7 +121,7 @@ This feature supports to track the Network Requests triggered with in applicatio
 <br> *Here are some of the granular details/limitations of the feature:*
 * *Response and Request Body atributes are collected only when the:*
     * *size is < 10kb and the content-length is available* 
-    * *response body is type josn and content-type is "json", "text/plain", "text/javascript" or "application/javascript"*
+    * *response body is type json and content-type is "json", "text/plain", "text/javascript" or "application/javascript"*
 * *Response and Request Headers are collected only when the:*
     * *server is provisioned with "Access-Control-Expose-Headers:*"* 
 
