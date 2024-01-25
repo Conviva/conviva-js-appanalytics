@@ -2,9 +2,9 @@
 # Changelog
 ## 0.4.8 (25/JAN/2024)
 * Added capability of autotracking meta tags present inside HEAD section of HTML page based on keys provided as config. Please refer to [Meta Tags feature](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#autocollection-of-meta-tags-from-head-section-of-html-page) for more details.
-* Added functionality for app to report appVersion as part of init config.
+* Added functionality for app to report appVersion as part of init config. Please refer to [Initialization](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#initialization) for more details.
 * Enhances network requests & response collection feature to support collection of response and request body where content-type is `text/javascript`, `application/javascript` along with already supported `text/plain` and `application/json`.
-* Fixes issue of setting page information in events by sending this data along with trackPageView.
+* Enhances trackPageView api to take custom page title as input. Please refer to [trackPageView Info](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#report-page-view-for-tracking-in-app-page-navigations) for more details.
 
 ## 0.4.6 (05/JAN/2024)
 * Added remote-config control in button and link click tracking custom api.
