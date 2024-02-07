@@ -181,7 +181,32 @@ convivaAppTracker({
 
 <details>
     <summary><b>Auto-collected Events</b></summary>
-    
+
+## Auto Ingestion of "traceparent" header to network requests
+This feature supports to ingest "traceparent" header into network requests based on the config provided. 
+
+Structure of traceparentGeneration config
+```js
+//Example config to generate.
+convivaAppTracker({
+  appId: 'YOUR_APP_NAME_AS_STRING',
+  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+  appVersion: "1.1.0",
+  contexts: {
+      performanceTiming: true
+  },
+  plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin(), LinkClickTrackingPlugin()],
+  configs:{
+        configs: {
+          traceparentGeneration: {
+            force: true, // optional (default false), forces the below settings to take effect disregarding remote configuration
+            enabled: true, // optional (default true), enables traceparent generation for below target URLs
+            targetUrl: ["auth", "signup"] // Mandatory, Mention all the target URL substrings that need "traceparent" to be generated
+          }
+    }
+});
+```
+
 ##### Conviva provides a rich set of application performance metrics with the help of autocollected app events, such as _button_click_, and _network_request_.
 
 Event | Occurrence |

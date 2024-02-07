@@ -1,5 +1,9 @@
 
 # Changelog
+## 0.5.3 (07/FEB/2024)
+* Added capability to generate "traceparent" header for network requests based on config.
+* Fixes issue of missing "assetName" from conviva video events.
+
 ## 0.4.8 (25/JAN/2024)
 * Added capability of autotracking meta tags present inside HEAD section of HTML page based on keys provided as config. Please refer to [Meta Tags feature](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#autocollection-of-meta-tags-from-head-section-of-html-page) for more details.
 * Added functionality for app to report appVersion as part of init config. Please refer to [Initialization](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#initialization) for more details.
