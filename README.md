@@ -194,7 +194,6 @@ convivaAppTracker({
   },
   plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin(), LinkClickTrackingPlugin()],
   configs:{
-        configs: {
           traceparentGeneration: {
             force: true, // optional (default false), forces the below settings to take effect disregarding remote configuration
             enabled: true, // optional (default true), enables traceparent generation for below target URLs
