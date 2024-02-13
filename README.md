@@ -179,9 +179,6 @@ convivaAppTracker({
 
 ```
 
-<details>
-    <summary><b>Auto-collected Events</b></summary>
-
 ## Auto Ingestion of "traceparent" header to network requests
 This feature supports to ingest "traceparent" header into network requests based on the config provided. 
 
@@ -206,6 +203,10 @@ convivaAppTracker({
     }
 });
 ```
+
+<details>
+    <summary><b>Auto-collected Events</b></summary>
+
 
 ##### Conviva provides a rich set of application performance metrics with the help of autocollected app events, such as _button_click_, and _network_request_.
 
