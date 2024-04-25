@@ -190,52 +190,6 @@ declare function trackStructEvent(event: StructuredEvent & CommonEventProperties
  * @param event - The Custom Event properties
  * @param trackers - The tracker identifiers which the event will be sent to
  */
-// export function trackCustomEvent(structure: any, event: CustomEvent & CommonEventProperties, trackers?: Array<string>) :void{
-//   dispatchToTrackers(trackers, (t) => {
-//     let convivaConfig = t.core.getConfig();
-//     if(structure.name == "" || structure.name == undefined) {
-//       console.warn("custom event name is mandatory for trackCustomEvent API!!");
-//     }
-//     try {
-//       let parsedData = JSON.parse(structure.data);
-//       if(!parsedData) {
-//         console.warn("Unable to parse custom event data as JSON");
-//       }
-//     } catch(e) {
-//       console.warn("Unable to parse custom event data as JSON");
-//     }
-//     if (convivaConfig.customEventTrackingConfiguration != undefined) {
-//       if (
-//         convivaConfig.customEventTrackingConfiguration.blocklist != undefined &&
-//         convivaConfig.customEventTrackingConfiguration.blocklist.length > 0
-//       ) {
-//         let blocklist = convivaConfig.customEventTrackingConfiguration.blocklist;
-//         if (blocklist.indexOf('*') == -1) {
-//           if (blocklist.indexOf('' + structure.name) == -1) {
-//             t.core.track(
-//               buildCustomEvent({ name: structure.name, data: structure.data }),
-//               event.context,
-//               event.timestamp
-//             );
-//           }
-//         }
-//       } else {
-//         t.core.track(buildCustomEvent({ name: structure.name, data: structure.data }), event.context, event.timestamp);
-//       }
-//     } else {
-//       t.core.track(buildCustomEvent({ name: structure.name, data: structure.data }), event.context, event.timestamp);
-//     }
-//   });
-// }
-/**
- * Track a Custom event
- * A classic style of event tracking, allows for easier movement between analytics
- * systems. A loosely typed event, creating a Custom event is preferred, but
- * useful for interoperability.
- *
- * @param event - The Custom Event properties
- * @param trackers - The tracker identifiers which the event will be sent to
- */
 declare function trackCustomEvent(event: CustomEvent & CommonEventProperties, trackers?: Array<string>): void;
 /**
  * Set Custom Tags
