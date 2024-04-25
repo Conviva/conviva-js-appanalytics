@@ -39,7 +39,7 @@ convivaAppTracker({
 });
 
 ```
-####Note:- Eco Sensor utilises localstorage to cache some data.
+#### Note:- Eco Sensor utilises localstorage to cache some data.
 ## Set the user id (viewer id)
 ```js
 setUserId('replace_me_by_the_userId');
