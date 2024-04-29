@@ -14,7 +14,7 @@
 * Resolves the Traceparent header generation issue. Now the Traceparent header is generated for all target URLs that are set to `*` in `traceparentconfig`.
 * Reduces the number of cached payload data entries in local storage from 1000 to 10, and the sending limit of the entries without caching from 40kb to 20kb. Both these settings are manageable via Remote Config.
 * Changes the behavior of local storage from *Last In, First Out (LIFO)* to *First In, First Out (FIFO)*, when the maximum limit (10 entries) is reached.
-* Reduces the payload size of *Network Request Event* by limiting the default attributes to `targetUrl`, `method`, `responseStatusCode`, and `duration`. However, the retention of request, response body, and header attributes remain unchanged.
+* Reduces the payload size of *Network Request Event* by limiting the default attributes to `targetUrl`, `method`, `responseStatusCode` and `duration`. However, the retention of request/response body/header attributes remain unchanged.
 
 ## 0.5.3 (07/FEB/2024)
 * Added capability to generate "traceparent" header for network requests based on config.
