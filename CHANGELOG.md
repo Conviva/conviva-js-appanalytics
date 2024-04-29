@@ -1,20 +1,20 @@
 
 # Changelog
 ## 0.6.6 (25/APR/2024)
-* Enables auto tracking of visibility change events in web applications, sending conviva_application_foreground & conviva_application_background events, with this feature enabled by default.
-* Enables auto tracking of "lcp" (Largest Contentful Paint) Context, which is enabled by default.
-* Enables auto tracking of the First App Launch feature using the "First Launch" Custom Tag Context.
-* Optimises the payload size by applying gzip encryption and schema optimisation 
-* Supports customized gatewayUrl using each customer's CUSTOMER_KEY
-* Renames Remote Configuration URL domain to *.conviva.com
-* Updates Default block list of the Network Request Tracking feature.
-* Introduces a new Performance Context based on PerformanceNavigationTiming as the old Performance Context based on PerformanceTiming is deprecated. The old Performance Context is enabled by default, while the new Performance Context can be configured via Remote Config.
-* Integrates custom event and video event tracking configurations into Remote Config for a unified setup.
-* Improves Custom Event blocking logic by implementing substring matching.
-* Resolves the issue where the Traceparent header was not generated for all URLs when the targetURL was set to "*" in "traceparentconfig".
-* Reduces the number of cached payload data entries in local storage to 10 from 1000, and any entry exceeding 20kb will be sent without caching, down from the previous limit of 40kb. Both these settings can be managed via Remote Config.
-* Corrects the storage behavior in local storage from Last In, First Out (LIFO) to First In, First Out (FIFO) once the maximum of 10 entries is reached.
-* Decreases the payload size of Network Request Event by limiting Default attributes to targetUrl, method, responseStatusCode, duration, while retaining unchanged request/response body/header attributes.
+* Enables auto-tracking of visibility change events in the web applications by sending the `conviva_application_foreground` and `conviva_application_background` events, which are enabled by default.
+* Enables auto-tracking of *lcp (Largest Contentful Paint)* context.
+* Enables auto-tracking of the *First App Launch* feature by using the *First Launch* custom tag context.
+* Optimizes the payload size by applying *gzip encryption* and *schema optimization*.
+* Supports custom gateway URL by using the unique `CUSTOMER_KEY` associated with each customer.
+* Renames the remote configuration URL domain to `*.[conviva.com](http://conviva.com/)`.
+* Updates the default block list of the *Network Request Tracking* feature.
+* Introduces a new *Performance Context* based on `PerformanceNavigationTiming`. The old *Performance Context*, based on `PerformanceTiming`, is deprecated. By default, the old *Performance Context* remains enabled. Configure the new *Performance Context* via Remote Config.
+* Integrates custom and video events tracking configurations into Remote Config to offer a unified setup.
+* Improves the *Custom Event Blocking* logic by implementing the substring matching technique.
+* Resolves the Traceparent header generation issue. Now the Traceparent header is generated for all target URLs that are set to `*` in `traceparentconfig`.
+* Reduces the number of cached payload data entries in local storage from 1000 to 10, and the sending limit of the entries without caching from 40kb to 20kb. Both these settings are manageable via Remote Config.
+* Changes the behavior of local storage from *Last In, First Out (LIFO)* to *First In, First Out (FIFO)*, when the maximum limit (10 entries) is reached.
+* Reduces the payload size of *Network Request Event* by limiting the default attributes to `targetUrl`, `method`, `responseStatusCode`, and `duration`. However, the retention of request, response body, and header attributes remain unchanged.
 
 ## 0.5.3 (07/FEB/2024)
 * Added capability to generate "traceparent" header for network requests based on config.
