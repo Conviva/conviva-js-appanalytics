@@ -4,8 +4,8 @@
 * Enables auto-tracking of visibility change events in the web applications by sending the `conviva_application_foreground` and `conviva_application_background` events, which are enabled by default.
 * Enables auto-tracking of *lcp (Largest Contentful Paint)* context.
 * Enables auto-tracking of the *First App Launch* feature by using the *First Launch* custom tag context.
-* Enables auto-tracking of window load event in the web applications by sending the `conviva_window_loaded` custom event, which are enabled by default.
-* Enables auto-tracking of visibility state change to hidden before trackPageView by sending the `conviva_app_backgrnd_before_page_view` custom event, which are enabled by default.
+* Allows auto-tracking of the *Window Load* event in the web applications. This is achieved by sending the `conviva_window_loaded` custom event, which is enabled by default.
+* Allows auto-tracking of visibility state change to be hidden before tracking the page view. This is achieved by sending the `conviva_app_backgrnd_before_page_view` custom event, which is enabled by default.
 * Optimizes the payload size by applying *gzip encryption* and *schema optimization*.
 * Supports custom gateway URL by using the unique `CUSTOMER_KEY` associated with each customer.
 * Renames the remote configuration URL domain to `*.[conviva.com](http://conviva.com/)`.
