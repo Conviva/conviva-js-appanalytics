@@ -2,7 +2,7 @@
 # Changelog
 
 ## 0.6.7 (10/MAY/2024)
-* Added Angular Support.
+* Added Angular framework support.
 ## 0.6.6 (25/APR/2024)
 * Enables auto-tracking of visibility change events in the web applications by sending the `conviva_application_foreground` and `conviva_application_background` events, which are enabled by default.
 * Enables auto-tracking of *lcp (Largest Contentful Paint)* context.
