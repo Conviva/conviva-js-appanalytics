@@ -1,5 +1,5 @@
-import { TrackerConfiguration, BrowserTracker, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, DisableAnonymousTrackingConfiguration, EnableAnonymousTrackingConfiguration, AnonymousTrackingOptions, FlushBufferConfiguration, PageViewEvent, ClearUserDataConfiguration } from '@snowplow/browser-tracker-core';
-import { version, CommonEventProperties, ConditionalContextProvider, ContextPrimitive, ContextGenerator, FilterProvider, RuleSetProvider, SelfDescribingEvent, SelfDescribingJson, StructuredEvent, CustomEvent, ContextEvent, ContextFilter, RuleSet } from '@snowplow/tracker-core';
+import { TrackerConfiguration, BrowserTracker, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, DisableAnonymousTrackingConfiguration, EnableAnonymousTrackingConfiguration, AnonymousTrackingOptions, FlushBufferConfiguration, PageViewEvent, ClearUserDataConfiguration } from '@convivainc/browser-tracker-core';
+import { version, CommonEventProperties, ConditionalContextProvider, ContextPrimitive, ContextGenerator, FilterProvider, RuleSetProvider, SelfDescribingEvent, SelfDescribingJson, StructuredEvent, CustomEvent, ContextEvent, ContextFilter, RuleSet } from '@convivainc/tracker-core';
 /**
  * Initialise a new tracker
  *
