@@ -3,11 +3,11 @@ Conviva Use Application Analytics to autocollect events and track application sp
 
 # Installation
 
-```
+```js
 npm install @convivainc/conviva-js-appanalytics
 ```
 
-```
+```js
 yarn add @convivainc/conviva-js-appanalytics
 ```
 # Usage
