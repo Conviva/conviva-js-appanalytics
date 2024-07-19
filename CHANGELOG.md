@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 0.6.8 (20/JUL/2024)
+* Fixes the issue of missing prototype for XMLHttpRequest thereby causing implementations using prototype to be unusable.
+* Fixes the issue of Click Tracking Plugin continuously observing for changes to attributes of all elements in DOM tree, thereby causing performance degradation. 
 ## 0.6.7 (10/MAY/2024)
 * Added Angular framework support.
 ## 0.6.6 (25/APR/2024)
