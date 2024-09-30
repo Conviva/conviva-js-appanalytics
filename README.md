@@ -91,11 +91,12 @@ We need minimum of the Video Sensor Core SDK Version of 4.5.13 to be in a stage 
 
 [v4.5.13](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.5.13)
 
-[v4.7.11](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.7.11)
-
 4.5.13 (27/DEC/2022)
     - Supports broadcasting video events to Conviva Eco SDKs to consume. For non App Insights users, there is no impact.
     - We only send following fields from video events into Eco events (name, sid, iid, clid, st, cen, ced, an).
+
+[v4.7.11](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.7.11)
+
 4.7.11 (30/SEP/2024)
     - Added required attributes in Video events broadcasted to Conviva ECO Sensor SDKs to consume. For non ECO users, there is no impact.
     - We send following fields from video events into Eco events (name, sid, iid, clid, st, cen, ced, an, pn, cl, lv, tags, vid, url, sst, sid, fw, fwv, mv, mn, old, new).
