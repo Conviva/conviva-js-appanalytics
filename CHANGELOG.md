@@ -1,6 +1,10 @@
 
 # Changelog
 
+## 0.6.12 (30/SEPT/2024)
+* Added ES5 support.
+* Added required attributes in Conviva Video Events. Requires upgrade of video Sensor SDK to [v4.7.11](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.7.11) or above.
+
 ## 0.6.11 (05/SEPT/2024)
 * Enhanced the SDK’s remote configuration capabilities for more efficient management of tracking features.
 * Fixes issue of page-ping event not sent when there is no user activity and app is in the foreground.
