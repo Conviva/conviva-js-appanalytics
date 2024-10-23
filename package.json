@@ -1,6 +1,6 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "0.6.12",
+  "version": "0.6.14",
   "description": "Conviva Application Analytics library",
   "main": "conviva-js-appanalytics.js",
   "dependencies": {

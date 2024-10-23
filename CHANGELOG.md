@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 0.6.14 (23/OCT/2024)
+* Improves performance by disconnecting mutation observer when continuous mutations are detected without many significant changes in DOM.
+
 ## 0.6.12 (30/SEPT/2024)
 * Added ES5 support.
 * Added required attributes in Conviva Video Events. Requires upgrade of video Sensor SDK to [v4.7.11](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.7.11) or above.
