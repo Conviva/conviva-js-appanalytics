@@ -6,7 +6,7 @@
   "dependencies": {
     "@convivainc/browser-tracker-core": "0.0.2",
     "@convivainc/tracker-core": "0.0.2",
-    "@convivainc/conviva-js-appanalytics-click-tracking": "0.3.13",
+    "@convivainc/conviva-js-appanalytics-click-tracking": "0.3.14",
     "@convivainc/conviva-js-appanalytics-error-tracking": "0.3.11",
     "@convivainc/conviva-js-appanalytics-performance-timing": "0.3.11"
   },
