@@ -1,6 +1,11 @@
 
 # Changelog
 
+## 0.6.16 (08/NOV/2024)
+* Introduces “deviceMetadata” key inside ConvivaAppTracker Initialisation config to set additional device related information. Please refer to [Device Metadata feature](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#eco-sensor-api-for-setting-device-metadata-from-application-for-sdks) for more details.
+* Introduces Event Batching Feature with configurable payload size and interval caps, immediate dispatch for urgent events, remote configuration, and fixed limits from Activation
+* Fixes the error with document / window being undefined for NexJS Web applications.
+
 ## 0.6.14 (23/OCT/2024)
 * Improves performance by disconnecting mutation observer when continuous mutations are detected without many significant changes in DOM.
 
