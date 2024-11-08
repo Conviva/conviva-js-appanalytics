@@ -248,6 +248,8 @@ deviceMetadata: An object containing the key-value pairs of pre-defined values f
 ##### Sample
 
 ```js
+    import { ConvivaDeviceMetadata } from '@convivainc/conviva-js-appanalytics';
+    
     const deviceMetadata: ConvivaDeviceMetadata = {
       DeviceBrand : 'Apple',
       DeviceManufacturer : 'Apple',
