@@ -15,10 +15,6 @@ yarn add @convivainc/conviva-js-appanalytics
 Import the required packages into your project:
 ```js
 import { convivaAppTracker, trackPageView, trackCustomEvent, setUserId } from '@convivainc/conviva-js-appanalytics';
-import { PerformanceTimingPlugin } from '@convivainc/conviva-js-appanalytics-performance-timing';
-import { ErrorTrackingPlugin, enableErrorTracking } from '@convivainc/conviva-js-appanalytics-error-tracking';
-import { LinkClickTrackingPlugin, enableLinkClickTracking, enableButtonClickTracking } from '@convivainc/conviva-js-appanalytics-click-tracking';
-
 ```
 
 ## Initialization
@@ -31,11 +27,7 @@ Init the SDK with appId, customerKey and optional parameters.
 convivaAppTracker({
   appId: 'YOUR_APP_NAME_AS_STRING',
   convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-  appVersion: "1.1.0",
-  contexts: {
-      performanceTiming: true
-  },
-  plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin(), LinkClickTrackingPlugin()]
+  appVersion: "1.1.0"
 });
 
 ```
@@ -50,18 +42,6 @@ By default document.title is set as page title but you can also pass custom page
 ```js
 trackPageView(); // default page title is document.title
 trackPageView({"title": "Custom Page Title"});
-```
-
-## Enable autocollection of link & button clicks
-```js
-enableLinkClickTracking(); // Tracks all link clicks on the page
-enableButtonClickTracking();
-```
-
-## Enable Error Tracking
-```js
-enableErrorTracking();
-
 ```
 
 ## Custom event tracking to track your application specific events and state changes

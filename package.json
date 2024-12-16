@@ -1,14 +1,11 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "0.7.8",
-  "description": "Conviva Application Analytics library",
+  "version": "1.0.3",
+  "description": "Conviva ECO Sensor library",
   "main": "conviva-js-appanalytics.js",
   "dependencies": {
-    "@convivainc/browser-tracker-core": "0.0.4",
-    "@convivainc/tracker-core": "0.0.4",
-    "@convivainc/conviva-js-appanalytics-click-tracking": "0.3.16",
-    "@convivainc/conviva-js-appanalytics-error-tracking": "0.3.11",
-    "@convivainc/conviva-js-appanalytics-performance-timing": "0.3.11"
+    "@convivainc/browser-tracker-core": "1.0.3",
+    "@convivainc/tracker-core": "1.0.3"
   },
   "repository": {
     "type": "git",
