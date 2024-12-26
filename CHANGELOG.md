@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 1.0.4 (27/DEC/2024)
+* Fixes an issue that prevents "fetch" API to return response, when the URL to be monitored is blocklisted using remote configuration management.
+
 ## 1.0.3 (16/DEC/2024)
 * Introduces "cleanup" API to comprehensively remove Conviva from the application footprint.
 * Simplifies integration steps by consuming enableLinkClickTracking, enableButtonClickTracking & enableErrorTracking APIs into initialization sequence. 
