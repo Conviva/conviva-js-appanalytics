@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 1.0.5 (17/JAN/2025)
+* Fixes an issue that custom events are not reaching to pulse.
+
 ## 1.0.4 (27/DEC/2024)
 * Fixes an issue that prevents "fetch" API to return response, when the URL to be monitored is blocklisted using remote configuration management.
 
