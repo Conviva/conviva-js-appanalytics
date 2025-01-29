@@ -18,6 +18,8 @@ import { convivaAppTracker, trackPageView, trackCustomEvent, setUserId } from '@
 ```
 
 ## Initialization
+Initialize the tracker as early as possible during the DOM load sequence.
+
 Init the SDK with appId, customerKey and optional parameters. 
 - appId: set this to your understandable application name, reflecting the platform and brand of your app. As an example: "WEB App", "LGTV Web App".
 - convivaCustomerKey: the unique string identifier for your Conviva account. Provided by Conviva / can be obtained in the Conviva Pulse dashboard. 
@@ -276,6 +278,7 @@ application_background | when visibility state change to `hidden`|
 application_foreground | when visibility state change to `visible`|
 Largest Contentful Paint| timing information about the largest image or text paint before user input on a web page| Context|
 First App Launch| First time launch in the browser|Custom Tag Context|
+page_loaded | On DOMContentLoaded event listener | Used to compute Page Loads, Avg Document Load Time, Avg DNS Lookup Time, Avg Document Response Time metrics.
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [ECO Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
 </details>
