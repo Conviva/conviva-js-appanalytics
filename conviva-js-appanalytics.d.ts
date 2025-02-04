@@ -1,4 +1,4 @@
-import { TrackerConfiguration, BrowserTracker, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, DisableAnonymousTrackingConfiguration, EnableAnonymousTrackingConfiguration, AnonymousTrackingOptions, FlushBufferConfiguration, PageViewEvent, ClearUserDataConfiguration } from '@convivainc/browser-tracker-core';
+import { TrackerConfiguration, BrowserTracker, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, DisableAnonymousTrackingConfiguration, EnableAnonymousTrackingConfiguration, AnonymousTrackingOptions, FlushBufferConfiguration, PageViewEvent, ClearUserDataConfiguration, ErrorEventProperties } from '@convivainc/browser-tracker-core';
 import { version, CommonEventProperties, ConditionalContextProvider, ContextPrimitive, ContextGenerator, FilterProvider, RuleSetProvider, SelfDescribingEvent, SelfDescribingJson, StructuredEvent, CustomEvent, ContextEvent, ContextFilter, RuleSet, ButtonClickEvent, LinkClickEvent } from '@convivainc/tracker-core';
 /**
  * Initialise a new tracker
@@ -87,6 +87,19 @@ declare function unsetCustomTags(event: CustomEvent & CommonEventProperties, tra
  */
 declare function cleanup(trackers?: Array<string>): void;
 /**
+ * Get Client ID
+ * Return string
+ */
+declare function getClientId(): string;
+/**
+ * Set Client ID
+ * A classic style for setting custom ClientID
+ *
+ * @param clientId - The Custom Event properties
+ * @param trackers - The tracker identifiers which the event will be sent to
+ */
+declare function setClientId(clientId: string): void;
+/**
  * Manually log a button click
  *
  * @param event - The event information
@@ -100,4 +113,5 @@ declare function trackButtonClick(event: ButtonClickEvent & CommonEventPropertie
  * @param trackers - The tracker identifiers which the event will be sent to
  */
 declare function trackLinkClick(event: LinkClickEvent & CommonEventProperties, trackers?: Array<string>): void;
-export { convivaAppTracker, BrowserTracker, TrackerConfiguration, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, version, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, FlushBufferConfiguration, PageViewEvent, EnableAnonymousTrackingConfiguration, DisableAnonymousTrackingConfiguration, AnonymousTrackingOptions, ClearUserDataConfiguration, ConditionalContextProvider, ContextPrimitive, SelfDescribingEvent, SelfDescribingJson, CommonEventProperties, StructuredEvent, CustomEvent, ContextGenerator, FilterProvider, RuleSetProvider, ContextEvent, ContextFilter, RuleSet, setReferrerUrl, setCustomUrl, setDocumentTitle, setUserId, trackPageView, trackCustomEvent, setCustomTags, unsetCustomTags, cleanup, trackButtonClick, trackLinkClick };
+declare function trackError(event: ErrorEventProperties & CommonEventProperties, trackers?: Array<string>): void;
+export { convivaAppTracker, BrowserTracker, TrackerConfiguration, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, version, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, FlushBufferConfiguration, PageViewEvent, EnableAnonymousTrackingConfiguration, DisableAnonymousTrackingConfiguration, AnonymousTrackingOptions, ClearUserDataConfiguration, ConditionalContextProvider, ContextPrimitive, SelfDescribingEvent, SelfDescribingJson, CommonEventProperties, StructuredEvent, CustomEvent, ContextGenerator, FilterProvider, RuleSetProvider, ContextEvent, ContextFilter, RuleSet, ErrorEventProperties, setReferrerUrl, setCustomUrl, setDocumentTitle, setUserId, trackPageView, trackCustomEvent, setCustomTags, unsetCustomTags, cleanup, getClientId, setClientId, trackButtonClick, trackLinkClick, trackError };

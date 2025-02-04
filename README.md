@@ -14,7 +14,7 @@ yarn add @convivainc/conviva-js-appanalytics
 ## Import to you project
 Import the required packages into your project:
 ```js
-import { convivaAppTracker, trackPageView, trackCustomEvent, setUserId } from '@convivainc/conviva-js-appanalytics';
+import { convivaAppTracker, trackPageView, trackCustomEvent, setUserId, setClientId, getClientId } from '@convivainc/conviva-js-appanalytics';
 ```
 
 ## Initialization
@@ -34,6 +34,35 @@ convivaAppTracker({
 
 ```
 #### Note:- Eco Sensor utilises localstorage to cache some data.
+### Client ID Synchronization
+- Mobile App to WebView Synchronization
+- Cross-Subdomain Client ID Synchronization
+
+When integrating multiple Conviva ECO Sensor instances across different environments (e.g., subdomains of a single customer, mobile apps opening webviews), clientId may not be shared automatically. To maintain consistency, the sensor provides getClientId and setClientId APIs to manually synchronize clientId between instances.
+#### getClientId()
+Retrieves the current clientId from an already initialized sensor instance.
+```js
+// Always call getClientId() after convivaAppTracker()
+convivaAppTracker({
+  appId: 'YOUR_APP_NAME_AS_STRING',
+  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+  appVersion: "1.1.0"
+});
+clientId = getClientId();
+```
+
+#### setClientId(clientId)
+Sets a specific clientId before initializing the SDK.
+
+```js
+// Always call setClientId() before convivaAppTracker()
+setClientId(clientId);
+convivaAppTracker({
+  appId: 'YOUR_APP_NAME_AS_STRING',
+  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+  appVersion: "1.1.0"
+});
+```
 ## Set the user id (viewer id)
 ```js
 setUserId('replace_me_by_the_userId');

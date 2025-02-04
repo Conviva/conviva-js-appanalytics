@@ -1,6 +1,16 @@
 
 # Changelog
 
+## 1.1.0 (04/FEB/2025)
+  * Introduces Intelligent Collection of Network Request Feature designed to optimize data collection while ensuring flexibility and actionable insights with reduced volume:
+    - Controls network request volume through Activation rules (Collect or Block), which override previous URL-based blocklists.
+    - Supports URL-based filtering using hostname, path, scheme, and filtering based on duration and response status code.
+  * Introduces getClientId & setClientId APIs to share Conviva's clientId across different sensor instances for usecases such as subdomains, webviews etc.
+  * Fixes an issue where cleanup() API removes listeners permanently for the instance preventing re-initialize to add listeners back.
+
+<br><b>NOTE:</b></br>
+By default, Intelligent Collection feature is not enabled during Activation. To enable it, please contact the Conviva Support team. Existing customers will not be impacted if the feature remains disabled, as all changes are fully backward compatible.
+
 ## 1.0.5 (17/JAN/2025)
 * Fixes an issue that custom events are not reaching to pulse.
 
