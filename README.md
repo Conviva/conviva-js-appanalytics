@@ -74,6 +74,35 @@ By default document.title is set as page title but you can also pass custom page
 trackPageView(); // default page title is document.title
 trackPageView({"title": "Custom Page Title"});
 ```
+## Autocollection of Errors
+Auto collection for Errors / exceptions is enabled by default.
+
+Alternatively, you could report exceptions manually using the following API:
+
+```js
+trackError({
+    message: 'Cannot get user object',
+    filename: 'shop.js',
+    error: exceptionObj //Exception object containing properties describing the exception.
+});
+```
+## Autocollection of Clicks
+Auto collection Link clicks and button clicks is available till version v1.1.1
+Additionally, v1.1.2 enables collection of all kinds of clicks automatically and currently supports standard html elements, elements created using reactjs, angular and vue frameworks.
+
+We additionally have an experimental remote config specifically for clicks to attempt adding support of any non-standard/unsupported frameworks dynamically. Kindly reach out to Conviva support team.
+
+### Migration of Pulse dimensions for clicks
+Starting from v1.1.2 of sensor, the keys for click attributes have changed. Kindly update your event / metric mappings on pulse if any of following attributes are used in mapping:
+
+| <=v1.1.1                       | >=v1.1.2                       |
+|--------------------------------|--------------------------------|
+| elementType                    | elementType                    |
+| elementText                    | text                           |
+| elementName                    | elementName                    |
+| elementValue                   | value                          |
+| elementId                      | id                             |
+| elementClasses                 | class                          |
 
 ## Custom event tracking to track your application specific events and state changes
 Use trackCustomEvent() API to track all kinds of events. This API provides 2 fields to describe the tracked events.
