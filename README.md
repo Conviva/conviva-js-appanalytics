@@ -205,7 +205,6 @@ convivaAppTracker({
   contexts: {
       performanceTiming: true
   },
-  plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin(), LinkClickTrackingPlugin()],
   configs:{
         metaTagsTracking: {
           "tags":
@@ -313,7 +312,6 @@ deviceMetadata: An object containing the key-value pairs of pre-defined values f
           performanceTiming: true
       },
       deviceMetadata: deviceMetadata,
-      plugins: [ PerformanceTimingPlugin(), ErrorTrackingPlugin(), LinkClickTrackingPlugin()]
     });
 ```
 
