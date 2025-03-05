@@ -1,6 +1,9 @@
 
 # Changelog
 
+## 1.1.4 (05/MAR/2025)
+* Fixes an issue of modifying relative URL while intercepting XHR Request.
+
 ## 1.1.3 (25/FEB/2025)
 * Fixes an issue of missing targetUrl and target in link Clicks.
 
