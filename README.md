@@ -88,6 +88,7 @@ After steps 1–5, verify [auto-collected events](#auto-collected-events) in the
 
 <details>
 <summary><b>Track Custom Event</b></summary>
+    
 Use the **trackCustomEvent()** API to track all kinds of events. This API provides 2 fields to describe the tracked events:
 
 **name** - Name of the custom event
