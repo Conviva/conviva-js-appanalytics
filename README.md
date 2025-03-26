@@ -1,119 +1,102 @@
-# conviva-js-appanalytics
-Conviva Use Application Analytics to autocollect events and track application specific events and state changes.
+# Conviva JavaScript ECO SDK
 
-# Installation
+Use Conviva JavaScript ECO SDK to auto-collect events and track application-specific events and state changes.
 
-```
+**Table of Contents**
+- [Quick Start](#quick-start)
+- [More Features](#more-features)
+- [Auto-collected Events](#auto-collected-events)
+- [FAQ](#faq)
+
+## Quick Start
+
+### 1. Installation
+- Install the Conviva JavaScript ECO SDK using either **npm** or **yarn**:
+
+```plaintext
 npm install @convivainc/conviva-js-appanalytics
 ```
 
-```
+```plaintext
 yarn add @convivainc/conviva-js-appanalytics
 ```
-# Usage
-## Import to you project
-Import the required packages into your project:
+**Note**: For script-based integrations, refer [Conviva JS Script ECO SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
+
+### 2. Initialization
+
+**Note**: It is recommended to initialize the tracker as early **as possible** during the DOM load sequence, such as in `App.js`.
+
 ```js
-import { convivaAppTracker, trackPageView, trackCustomEvent, setUserId, setClientId, getClientId } from '@convivainc/conviva-js-appanalytics';
+import { convivaAppTracker } from '@convivainc/conviva-js-appanalytics';
+// ...
+    convivaAppTracker({
+        appId: 'YOUR_APP_NAME_AS_STRING',
+        convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+        appVersion: "1.1.0"
+    });
 ```
+**appId** - A string value that uniquely identifies your app across platforms. For example: `"WEB App"`, `"LGTV App"`.
 
-## Initialization
-Initialize the tracker as early as possible during the DOM load sequence.
+**convivaCustomerKey** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_). 
 
-Init the SDK with appId, customerKey and optional parameters. 
-- appId: set this to your understandable application name, reflecting the platform and brand of your app. As an example: "WEB App", "LGTV Web App".
-- convivaCustomerKey: the unique string identifier for your Conviva account. Provided by Conviva / can be obtained in the Conviva Pulse dashboard. 
-- appVersion: set app version in string format.
+**appVersion** - Set app version in string format.
 
-```js
-convivaAppTracker({
-  appId: 'YOUR_APP_NAME_AS_STRING',
-  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-  appVersion: "1.1.0"
-});
-
-```
-#### Note:- Eco Sensor utilises localstorage to cache some data.
-### Client ID Synchronization
-- Mobile App to WebView Synchronization
-- Cross-Subdomain Client ID Synchronization
-
-When integrating multiple Conviva ECO Sensor instances across different environments (e.g., subdomains of a single customer, mobile apps opening webviews), clientId may not be shared automatically. To maintain consistency, the sensor provides getClientId and setClientId APIs to manually synchronize clientId between instances.
-#### getClientId()
-Retrieves the current clientId from an already initialized sensor instance.
-```js
-// Always call getClientId() after convivaAppTracker()
-convivaAppTracker({
-  appId: 'YOUR_APP_NAME_AS_STRING',
-  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-  appVersion: "1.1.0"
-});
-clientId = getClientId();
-```
-
-#### setClientId(clientId)
-Sets a specific clientId before initializing the SDK.
+### 3. Set the User ID
+User ID is a unique string identifier to distinguish individual viewers. If using [Conviva Video Sensor](https://github.com/Conviva/conviva-js-coresdk), match it with the **Viewer ID**. 
 
 ```js
-// Always call setClientId() before convivaAppTracker()
-setClientId(clientId);
-convivaAppTracker({
-  appId: 'YOUR_APP_NAME_AS_STRING',
-  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-  appVersion: "1.1.0"
-});
-```
-## Set the user id (viewer id)
-```js
+import { setUserId } from '@convivainc/conviva-js-appanalytics';
+
 setUserId('replace_me_by_the_userId');
 ```
 
-## Report Page View for tracking in-app page navigations.
-By default document.title is set as page title but you can also pass custom page title details in trackPageView.
+### 4. Report Page View
+
+By default, when `trackPageView()` is called, the *Page Title* is set using `document.title`. However, you can override this by passing a custom title in the `trackPageView()` API:
+
 ```js
-trackPageView(); // default page title is document.title
+import { trackPageView } from '@convivainc/conviva-js-appanalytics';
+
+// Uses document.title as the Page Title
+trackPageView();
+
+// Pass a custom Page Title
 trackPageView({"title": "Custom Page Title"});
 ```
-## Autocollection of Errors
-Auto collection for Errors / exceptions is enabled by default.
 
-Alternatively, you could report exceptions manually using the following API:
+### 5. Error Reporting 
+Error and exception auto-collection is enabled by default. Alternatively, you can manually report exceptions using the following API:
 
 ```js
-trackError({
-    message: 'Cannot get user object',
-    filename: 'shop.js',
-    error: exceptionObj //Exception object containing properties describing the exception.
-});
+import { trackError } from '@convivainc/conviva-js-appanalytics';
+
+try {
+    //...
+} catch (error) {
+    trackError({
+        message: 'Cannot get user object',
+        filename: 'shop.js',
+        error: error // Passing the caught error object.
+    });
+}
+
 ```
-## Autocollection of Clicks
-Auto collection Link clicks and button clicks is available till version v1.1.1
-Additionally, v1.1.2 enables collection of all kinds of clicks automatically and currently supports standard html elements, elements created using reactjs, angular and vue frameworks.
+After steps 1–5, verify [auto-collected events](#auto-collected-events) in the [validation dashboard](https://pulse.conviva.com/app/appmanager/ecoIntegration/validation) . (_Conviva login required_)
 
-We additionally have an experimental remote config specifically for clicks to attempt adding support of any non-standard/unsupported frameworks dynamically. Kindly reach out to Conviva support team.
 
-### Migration of Pulse dimensions for clicks
-Starting from v1.1.2 of sensor, the keys for click attributes have changed. Kindly update your event / metric mappings on pulse if any of following attributes are used in mapping:
+## More Features
 
-| <=v1.1.1                       | >=v1.1.2                       |
-|--------------------------------|--------------------------------|
-| elementType                    | elementType                    |
-| elementText                    | text                           |
-| elementName                    | elementName                    |
-| elementValue                   | value                          |
-| elementId                      | id                             |
-| elementClasses                 | class                          |
+<details>
+<summary><b>Track Custom Event</b></summary>
+Use the **trackCustomEvent()** API to track all kinds of events. This API provides 2 fields to describe the tracked events:
 
-## Custom event tracking to track your application specific events and state changes
-Use trackCustomEvent() API to track all kinds of events. This API provides 2 fields to describe the tracked events.
+**name** - Name of the custom event
 
-name - Name of the custom event.
-
-data - Any type of data in json format.
-
-The following example shows the data in JSON format.
+**data** - Any type of data in JSON format.
 
 ```js
+import { trackCustomEvent } from '@convivainc/conviva-js-appanalytics';
+
 let custom_data = {
                     "identifier1": "test",
                     "identifier2": 1,
@@ -125,129 +108,185 @@ trackCustomEvent({
   data: custom_data
 });
 ```
+</details>
 
-#### Conviva Video Events to App Insight
-We need minimum of the Video Sensor Core SDK Version of 4.5.13 to be in a stage to delegate the events:
+<details>
+<summary><b>Set Custom Tags</b></summary>
 
-[v4.5.13](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.5.13)
+Custom Tags are global tags applied to all events and persist throughout the application lifespan, or until they are removed.
 
-4.5.13 (27/DEC/2022)
-    - Supports broadcasting video events to Conviva Eco SDKs to consume. For non App Insights users, there is no impact.
-    - We only send following fields from video events into Eco events (name, sid, iid, clid, st, cen, ced, an).
-
-[v4.7.11](https://github.com/Conviva/conviva-js-coresdk/releases/tag/v4.7.11)
-
-4.7.11 (30/SEP/2024)
-    - Added required attributes in Video events broadcasted to Conviva ECO Sensor SDKs to consume. For non ECO users, there is no impact.
-    - We send following fields from video events into Eco events (name, sid, iid, clid, st, cen, ced, an, pn, cl, lv, tags, vid, url, sst, sid, fw, fwv, mv, mn, old, new).
-
-
-## Setting / Unsetting Custom tags to report your application specific data.
-Use setCustomTags() API to set all kinds of tags (key value pairs). This API provides 1 argument that accepts data in JSON Format to describe the tags.
-
-The following example shows the implementation of setting custom tags.
-In this example we have 3 different tags tagKey1, tagKey2, tagKey3 with 3 different values.
-
+**Set the custom tags:**
 ```js
+import { setCustomTags } from '@convivainc/conviva-js-appanalytics';
+
+// Adds the custom tags
 let customTagsToSet = {"tagKey1": "tagValue1","tagKey2": 1,"tagKey3":true};
 setCustomTags(customTagsToSet);
 
 ```
 
-Use unsetCustomTags() API to unset or remove that were already set. This API provides 1 argument to describe an array of tag keys to unset.
-
-The following example shows the implementation of unset or remove custom tags.
+**Clear previously set custom tags:**
 ```js
+import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
+
+// Remove custom tags tagKey2 & tagKey3
 let customTagsToUnset = ['tagKey2', 'tagKey3'];
 unsetCustomTags(customTagsToUnset);
-
 ```
-## AutoCollection of Network Request made using XMLHttpRequest and fetch api
-This feature supports to track the Network Requests triggered with in application using XMLHttpRequest and fetch api
-*Note: This collection is disabled by default, reach out to Conviva Team enabling the tracking.* <br>
 
-<br> *Here are some of the granular details/limitations of the feature:*
-* *Response and Request Body atributes are collected only when the:*
-    * *size is < 10kb and the content-length is available* 
-    * *response body is type json and content-type is "json", "text/plain", "text/javascript" or "application/javascript"*
-* *Response and Request Headers are collected only when the:*
-    * *server is provisioned with "Access-Control-Expose-Headers:*"* 
+</details>
+
+<details>
+<summary><b>Client ID Synchronization</b></summary>
+
+When using multiple Conviva JavaScript ECO SDK instances across different environments (e.g., subdomains of the same customer or mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
+
+Use Cases:
+- Synchronizing Client ID between a mobile app and WebView.
+- Synchronizing Client ID across subdomains.
+
+**Note**: The Conviva JavaScript ECO SDK utilizes **local storage** to cache some data.
+
+- `getClientId()` – Retrieves the current Client ID
+- `setClientId(clientId)` – Sets a specific Client ID
 
 
+**Retrieve the Client ID**
 
-## AutoCollection of Meta tags from HEAD section of HTML page
-This feature supports to track the Meta tags from HEAD section of HTML page based on the config provided.
-#### metaTagsTracking is the config to collect Meta tags and can be provided as part of tracker Initialization under configs field.
-
-Structure of metaTagsTracking config 
 ```js
-//for below meta tags
-<HTML>
-    <HEAD>
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="description" content="Free Web tutorials for HTML and CSS">
-    <meta name="author" content="John Doe">
-    <meta http-equiv="refresh" content="30">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="site_name" content="goole.com">
-    <meta property="title" content="Sample app">
-    <meta property="description" content="Tv series content">
-    <meta property="locale" content="es_ES">
-    <meta property="type" content="video">
-    </HEAD>
-</HTML>
+import { convivaAppTracker, getClientId } from '@convivainc/conviva-js-appanalytics';
 
-//Example config to collect all name attributes and it's value and few certain property attributes and it's value.
+convivaAppTracker({
+  appId: 'YOUR_APP_NAME_AS_STRING',
+  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+  appVersion: "1.1.0"
+});
+
+// Always call getClientId() after initializing convivaAppTracker()
+clientId = getClientId();
+```
+
+
+**Set the Client ID**
+
+```js
+import { convivaAppTracker, getClientId } from '@convivainc/conviva-js-appanalytics';
+
+// Always call setClientId() before initializing convivaAppTracker() to set a specific clientId
+setClientId(clientId);
+
+convivaAppTracker({
+  appId: 'YOUR_APP_NAME_AS_STRING',
+  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+  appVersion: "1.1.0"
+});
+```
+
+</details>
+
+<details>
+<summary><b>Meta Tags Collection </b></summary>
+
+This feature enables tracking of meta tags from the `<head>` section of an HTML page based on the provided configuration.
+
+Example meta tags in an HTML Page:
+```js
+<html>
+    <head>
+        <meta name="keywords" content="HTML, CSS, JavaScript">
+        <meta name="description" content="Free Web tutorials for HTML and CSS">
+        <meta name="author" content="John Doe">
+        <meta http-equiv="refresh" content="30">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="site_name" content="goole.com">
+        <meta property="title" content="Sample app">
+        <meta property="description" content="TV series content">
+        <meta property="locale" content="es_ES">
+        <meta property="type" content="video">
+    </head>
+</html>
+```
+**Configure Meta Tags Tracking**
+
+To collect meta tag data, you need to define the `metaTagsTracking` configuration during SDK initialization. 
+
+Example Configuration:
+```js
 convivaAppTracker({
   appId: 'YOUR_APP_NAME_AS_STRING',
   convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
   appVersion: "1.1.0",
-  contexts: {
-      performanceTiming: true
-  },
-  configs:{
+  configs: {
         metaTagsTracking: {
-          "tags":
-            [
+          "tags": [
               {
-                "key": "name", //mandatory //here key sepcifies what attributes tag to collect
-                "value": "content", //mandatory //value specifies the value .
+                "key": "name",      // Target meta tags with "name" attributes
+                "value": "content", // Extract their "content" values
               },
               {
-                "key": "property",
-                "value": "content",
-                "condition": ["title", "locale"] // optional //value of attributes placed in key to collect 
-              },
-              ...
-            ]
+                "key": "property",  // Target meta tags with "property" attributes
+                "value": "content", // Extract their "content" values
+                "condition": ["title", "locale"] // Optional: Filter by specific property values
+              }
+          ]
         }
     }
 });
 
 ```
 
-## Auto Ingestion of "traceparent" header to network requests
-This feature supports to ingest "traceparent" header into network requests based on the config provided. Note: This ingestion is disabled by default, reach out to Conviva Team enabling the tracking.
+</details>
 
-## ECO Sensor API for setting Device Metadata from Application (for SDK’s)
-deviceMetadata config key passed as part of app init config:
-
-deviceMetadata: An object containing the key-value pairs of pre-defined values for DeviceType and DeviceCategory types and other string values for Device Brand, Manufacture, and models
 <details>
-    <summary><b>The table below provides the list of pre-defined metadata for device metadata:</b></summary>
+<summary><b>Set Device Metadata</b></summary>
+
+
+`deviceMetadata` is an object containing key-value pairs for predefined values, such as DeviceType and DeviceCategory, as well as additional properties like DeviceBrand, DeviceManufacturer, and DeviceModel.
+
+Conviva automatically collects deviceMetadata for Web apps and mobile browsers. However, for devices like set-top boxes, smart TVs, gaming consoles, and others, you will need to manually set the `deviceMetadata`.
+
+**Example of setting deviceMetadata:**
+
+```js
+    import { convivaAppTracker, ConvivaDeviceMetadata } from '@convivainc/conviva-js-appanalytics';
+    import { DeviceMetadataConstants } from '@convivainc/browser-tracker-core'
+    
+    const deviceMetadata: ConvivaDeviceMetadata = {
+      DeviceBrand : 'Samsung',
+      DeviceManufacturer : 'Samsung',
+      DeviceModel : 'UTU7000',
+      DeviceType : DeviceMetadataConstants.DeviceType.SMARTTV,
+      OperatingSystemName : 'Tizen',
+      OperatingSystemVersion : '8.0',
+      DeviceCategory : DeviceMetadataConstants.DeviceCategory.SAMSUNG_TV,
+      FrameworkName : 'Angular',
+      FrameworkVersion : '8.0.0',
+    };
+
+    convivaAppTracker({
+      appId: 'YOUR_APP_NAME_AS_STRING',
+      convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+      appVersion: "1.1.0",
+      deviceMetadata: deviceMetadata
+    });
+```
+
+<details>
+    <summary><b>The table of predefined metadata keys for deviceMetadata</b></summary>
+    
 
 | Key                       | Type                           | Description                                                                        | Example Values                                  |
 |---------------------------|--------------------------------|------------------------------------------------------------------------------------|------------------------------------------------|
-| DeviceBrand               | string                         | Brand of the device                                                                | "Apple", "Samsung", "Huawei", "Google"          |
-| DeviceManufacturer        | string                         | Manufacturer of the device                                                         | "Samsung", "Apple", "HTC", "Sony"               |
-| DeviceModel               | string                         | Model of the device                                                                | "iPhone 6 Plus", "HTC One", "Roku 3"            |
-| DeviceType                | Prescribed values of DeviceType | Type of the device. Only allows the DeviceType values and discards any other string values | DESKTOP, Console, Mobile (see table below)     |
-| DeviceVersion             | string                         | Device firmware version                                                            | "10", "9"                                       |
-| OperatingSystemName       | string                         | Name of the operating system used by the device, in uppercase                      | "WINDOWS", "LINUX", "IOS", "MAC", "ANDROID", "FIREOS", "ROKU", "PLAYSTATION", "CHROMEOS" |
-| OperatingSystemVersion    | string                         | Version of the operating system used by the device                                 | "10.10.1", "8.1", "T-INFOLINK2012-1012", "Fire OS 5" |
-| DeviceCategory            | Prescribed values of DeviceCategory | Device category to which the used device belongs. Only allows DeviceCategory values and discards any other string values | WEB, AND, PS (see table below)                  |
-| FrameworkName             | string                         | Application framework name                                                         | N/A                                             |
-| FrameworkVersion          | string                         | Application framework version                                                      | N/A                                             |                                          |
+| DeviceBrand               | string                         | Brand of the device                                                                | `"Comcast"`, `"LG"`, `"Google"`, `"Vizio"`          |
+| DeviceManufacturer        | string                         | Manufacturer of the device                                                         | `"Sony"`, `"Comcast"`, `"Google"`, `"Microsoft"`              |
+| DeviceModel               | string                         | Model of the device                                                                | `"Comcast Flex"`, `"UTU7000_KA"`, `"Xbox One"`            |
+| DeviceType                | Prescribed values of DeviceType | Type of the device. Only allows the DeviceType values and discards any other string values | DESKTOP, Console, Mobile (see [table below](#devicecategory-pre-defined-string-values))     |
+| DeviceVersion             | string                         | Device firmware version                                                            | `"10"`, `"9"`                                       |
+| OperatingSystemName       | string                         | Name of the operating system used by the device, in uppercase                      | `"Tizen"`, `"webOS"`, `"Vizio`", `"Linux`", `"Xbox OS"`, `"Chrome OS"` |
+| OperatingSystemVersion    | string                         | Version of the operating system used by the device                                 | `"10.10.1"`, `"8.1"`, `"T-INFOLINK2012-1012"`, `"1.56.500000"` |
+| DeviceCategory            | Prescribed values of DeviceCategory | Device category to which the used device belongs. Only allows DeviceCategory values and discards any other string values | WEB, AND, PS (see [table below](#devicetype-pre-defined-string-values))                  |
+| FrameworkName             | string                         | Application framework name                                                         | `"React TV"`, `"LightningJS"`, `"Angular"`                                            |
+| FrameworkVersion          | string                         | Application framework version                                                      | `"1.2.3"`                                            |                                          |
 
 #### DeviceCategory Pre-defined String Values:
 
@@ -284,60 +323,83 @@ deviceMetadata: An object containing the key-value pairs of pre-defined values f
 | Vehicle   | The device is a vehicle infotainment system.                  |
 | Other     | Other device types.                                           |
 
-##### Sample
 
-```js
-    import { ConvivaDeviceMetadata } from '@convivainc/conviva-js-appanalytics';
-    
-    const deviceMetadata: ConvivaDeviceMetadata = {
-      DeviceBrand : 'Apple',
-      DeviceManufacturer : 'Apple',
-      DeviceModel : 'MacBookPro',
-      DeviceType : "DESKTOP",
-      DeviceVersion : 'NAForMac',
-      OperatingSystemName : 'MAC',
-      OperatingSystemVersion : '10.13.6',
-      DeviceCategory : "WEB",
-      FrameworkName : 'Angular',
-      FrameworkVersion : '8.0.0',
-    };
+</details>
 
-  
-    // Initialize app tracker by passing appId, customerKey and tracker configuration URL. By default xhrtracking is disabled. To enable, configure it to true in configuration argument
-    convivaAppTracker({
-      appId: 'YOUR_APP_NAME_AS_STRING',
-      convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-      appVersion: "1.1.0",
-      contexts: {
-          performanceTiming: true
-      },
-      deviceMetadata: deviceMetadata,
-    });
-```
+</details>
+
+## Auto-collected Events
+
+Conviva automatically collects rich set of app performance metrics through app events after completing the [Quick Start](#quick-start).
+
+<details>
+  <summary><b>Auto-collected events table</b></summary>
+
+
+Event | Occurrence |
+------|------------|
+network_request | After receiving the network request response. [Refer limitations](#limitations). |
+page_ping | Max X and Y scroll positions difference comparing to the last event.|
+application_error | When an error occurrs in the application.|
+button_click | On the button click callback. [Refer limitations](#limitations). |
+link_click | On the link click callback. [Refer limitations](#limitations). |
+application_background | When visibility state change to `hidden`.|
+application_foreground | When visibility state change to `visible`.|
+Largest Contentful Paint| Timing information about the largest image or text paint before user input on a web page. |
+First App Launch| First time launch in the browser. Custom Tag Context.|
+page_loaded | On `"load"` event listener.Used to compute Page Loads, Avg Document Load Time, Avg DNS Lookup Time, Avg Document Response Time metrics. | 
+
+To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
+
+</details>
+
+### Limitations
+
+<details>
+  <summary><b>button_click, link_click</b></summary>
+
+The collection of all types of clicks is automatically supported, including those from standard HTML elements as well as elements created using React, Angular, and Vue frameworks. We also offer an experimental remote configuration specifically for click events, aiming to dynamically add support for non-standard or unsupported frameworks. For further assistance, please contact the Conviva support team. 
+**Note:** `preventDefault` and `stopPropagation` will prevent the auto-collection of button and link click events.
+
+**Migration of Pulse dimensions for clicks**
+
+Starting with version [v1.1.2](https://github.com/Conviva/conviva-js-appanalytics/releases/tag/v1.1.2) of the SDK, the attribute keys for click events have been updated.
+If you are using v1.1.1 or earlier and currently mapping `elementText`, you must update your configuration when upgrading to v1.1.2 or later. Specifically, update the mapping in [ECO Activation](https://pulse.conviva.com/app/activation/home) by mapping `elementText` to `text`, then redeploy to apply the changes.
+
+To ensure metrics reflect the updates, please review and update your event/metric mappings in [ECO Activation](https://pulse.conviva.com/app/activation/home) if you are using any of the following attributes:
+| <=v1.1.1                       | >=v1.1.2                       |
+|--------------------------------|--------------------------------|
+| elementType                    | elementType                    |
+| elementText                    | text                           |
+| elementName                    | elementName                    |
+| elementValue                   | value                          |
+| elementId                      | id                             |
+| elementClasses                 | class                          |
 
 </details>
 
 <details>
-    <summary><b>Auto-collected Events</b></summary>
+  <summary><b>network_request</b></summary>
 
+This feature supports tracking network requests triggered within the application using `XMLHttpRequest` and the Fetch API.
 
-##### Conviva provides a rich set of application performance metrics with the help of autocollected app events, such as _button_click_, and _network_request_.
+**Request and Response Body Collection:**
 
-Event | Occurrence | Notes |
-------|------------|-------|
-network_request | after receiving the network request response | only supports xmlHttpRequest/fetch|
-page_ping | Max X and Y scroll positions difference comparing to the last event|
-application_error | when an error occurrs in the application|
-button_click | on the button click callback| only if element is type button or button tag \n preventDefault and stopPropagation prevents to auto collect these events|
-link_click | on the link click callback|only if element is anchor tag \n preventDefault and stopPropagation prevents to auto collect these events|
-application_background | when visibility state change to `hidden`|
-application_foreground | when visibility state change to `visible`|
-Largest Contentful Paint| timing information about the largest image or text paint before user input on a web page| Context|
-First App Launch| First time launch in the browser|Custom Tag Context|
-page_loaded | On "load" event listener | Used to compute Page Loads, Avg Document Load Time, Avg DNS Lookup Time, Avg Document Response Time metrics.
+  Collected only when:
+  - Size is < 10KB and content-length is available.
+  - Response body is type JSON.
+  - Content-type is `"json"`, `"text/plain"`, `"text/javascript"` or `"application/javascript"`.
 
-To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [ECO Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
+ **Request and Response Header Collection:**
+
+ Collected only when:
+  - The server is provisioned with `"Access-Control-Expose-Headers:"`.
+
 </details>
 
-## Note:
-For Script based integrations, please refer [https://github.com/Conviva/conviva-js-script-appanalytics](https://github.com/Conviva/conviva-js-script-appanalytics) for integration guidelines.
+
+## FAQ
+
+[ECO Integration FAQ](https://pulse.conviva.com/learning-center/content/sensor_developer_center/tools/eco_integration/eco_integration_faq.htm)
+
+
