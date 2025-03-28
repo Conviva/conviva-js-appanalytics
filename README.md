@@ -83,16 +83,16 @@ Use the **trackCustomEvent()** API to track all kinds of events. This API provid
 ```js
 import { trackCustomEvent } from '@convivainc/conviva-js-appanalytics';
 
-let customData = {
-                    "identifier1": "test",
-                    "identifier2": 1,
-                    "identifier3":true
-                  };
-
-trackCustomEvent({
-  name: "Custom Event Name",
-  data: customData
-});
+    let customData = {
+                        "identifier1": "test",
+                        "identifier2": 1,
+                        "identifier3":true
+                      };
+    
+    trackCustomEvent({
+      name: "Custom Event Name",
+      data: customData
+    });
 ```
 </details>
 
@@ -105,8 +105,8 @@ Custom Tags are global tags applied to all events and persist throughout the app
 ```js
 import { setCustomTags } from '@convivainc/conviva-js-appanalytics';
 
-let customTagsData = { "tagKey1": "tagValue1", "tagKey2": 1, "tagKey3": true };
-setCustomTags({ name: "App Global Tag", data: customTagsData });
+    let customTagsData = { "tagKey1": "tagValue1", "tagKey2": 1, "tagKey3": true };
+    setCustomTags({ name: "App Global Tag", data: customTagsData });
 
 ```
 
@@ -114,10 +114,9 @@ setCustomTags({ name: "App Global Tag", data: customTagsData });
 ```js
 import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
 
-// Remove custom tags tagKey2 & tagKey3
-let customTagsData = ["tagKey2", "tagKey3"];
-
-unsetCustomTags({ name: "App Global Tag", data: customTagsData });
+    // Remove custom tags tagKey2 & tagKey3
+    let customTagsData = ["tagKey2", "tagKey3"];
+    unsetCustomTags({ name: "App Global Tag", data: customTagsData });
 ```
 
 </details>
@@ -130,16 +129,15 @@ Uncaught exceptions and unhandled rejections are automatically collected and ena
 ```js
 import { trackError } from '@convivainc/conviva-js-appanalytics';
 
-try {
-    //...
-} catch (error) {
-    trackError({
-        message: 'Cannot get user object',
-        filename: 'shop.js',
-        error: error // Passing the caught error object.
-    });
-}
-
+    try {
+        //...
+    } catch (error) {
+        trackError({
+            message: 'Cannot get user object',
+            filename: 'shop.js',
+            error: error // Passing the caught error object.
+        });
+    }
 ```
 </details>
 
@@ -163,14 +161,14 @@ Use Cases:
 ```js
 import { convivaAppTracker, getClientId } from '@convivainc/conviva-js-appanalytics';
 
-convivaAppTracker({
-  appId: 'YOUR_APP_NAME_AS_STRING',
-  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-  appVersion: "1.1.0"
-});
-
-// Always call getClientId() after initializing convivaAppTracker()
-clientId = getClientId();
+    convivaAppTracker({
+      appId: 'YOUR_APP_NAME_AS_STRING',
+      convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+      appVersion: "1.1.0"
+    });
+    
+    // Always call getClientId() after initializing convivaAppTracker()
+    clientId = getClientId();
 ```
 
 
@@ -179,14 +177,14 @@ clientId = getClientId();
 ```js
 import { convivaAppTracker, getClientId } from '@convivainc/conviva-js-appanalytics';
 
-// Always call setClientId() before initializing convivaAppTracker() to set a specific clientId
-setClientId(clientId);
-
-convivaAppTracker({
-  appId: 'YOUR_APP_NAME_AS_STRING',
-  convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-  appVersion: "1.1.0"
-});
+    // Always call setClientId() before initializing convivaAppTracker() to set a specific clientId
+    setClientId(clientId);
+    
+    convivaAppTracker({
+      appId: 'YOUR_APP_NAME_AS_STRING',
+      convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+      appVersion: "1.1.0"
+    });
 ```
 
 </details>
@@ -255,17 +253,16 @@ Conviva automatically collects deviceMetadata for Web apps and mobile browsers. 
 **Example of setting deviceMetadata:**
 
 ```js
-    import { convivaAppTracker, ConvivaDeviceMetadata } from '@convivainc/conviva-js-appanalytics';
-    import { DeviceMetadataConstants } from '@convivainc/browser-tracker-core'
+import { convivaAppTracker, ConvivaDeviceMetadata } from '@convivainc/conviva-js-appanalytics';
     
     const deviceMetadata: ConvivaDeviceMetadata = {
       DeviceBrand : 'Samsung',
       DeviceManufacturer : 'Samsung',
       DeviceModel : 'UTU7000',
-      DeviceType : DeviceMetadataConstants.DeviceType.SMARTTV,
+      DeviceType : "SmartTV",
       OperatingSystemName : 'Tizen',
       OperatingSystemVersion : '8.0',
-      DeviceCategory : DeviceMetadataConstants.DeviceCategory.SAMSUNG_TV,
+      DeviceCategory : "SAMSUNGTV",
       FrameworkName : 'Angular',
       FrameworkVersion : '8.0.0',
     };
