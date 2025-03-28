@@ -117,7 +117,7 @@ import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
 // Remove custom tags tagKey2 & tagKey3
 let customTagsData = ["tagKey2", "tagKey3"];
 
-unsetCustomTags({ name: "App Global Tag", data: customTagData });
+unsetCustomTags({ name: "App Global Tag", data: customTagsData });
 ```
 
 </details>
