@@ -5,8 +5,8 @@
   "main": "conviva-js-appanalytics.js",
   "types": "conviva-js-appanalytics.d.ts",
   "dependencies": {
-    "@convivainc/browser-tracker-core": "1.1.4",
-    "@convivainc/tracker-core": "1.1.4"
+    "@convivainc/browser-tracker-core": "1.1.6",
+    "@convivainc/tracker-core": "1.1.6"
   },
   "repository": {
     "type": "git",
