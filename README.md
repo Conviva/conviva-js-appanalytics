@@ -106,7 +106,7 @@ Custom Tags are global tags applied to all events and persist throughout the app
 import { setCustomTags } from '@convivainc/conviva-js-appanalytics';
 
     let customTagsData = { "tagKey1": "tagValue1", "tagKey2": 1, "tagKey3": true };
-    setCustomTags({ name: "App Global Tag", data: customTagsData });
+    setCustomTags(customTagsData);
 
 ```
 
@@ -116,7 +116,7 @@ import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
 
     // Remove custom tags tagKey2 & tagKey3
     let customTagsData = ["tagKey2", "tagKey3"];
-    unsetCustomTags({ name: "App Global Tag", data: customTagsData });
+    unsetCustomTags(customTagsData);
 ```
 
 </details>

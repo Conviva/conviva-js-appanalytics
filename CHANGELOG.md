@@ -1,6 +1,12 @@
 
 # Changelog
 
+## 1.1.6 (04/APR/2025)
+* Supports integration with Conviva Visual Labeling extension
+* Enhances network request tracking to handle relative URLs
+* Fixes typescript declarations for setCustomTags & unsetCustomTags API
+* Fixes an exception caused on old browsers that do not support AbortController API
+
 ## 1.1.4 (05/MAR/2025)
 * Fixes an issue of modifying relative URL while intercepting XHR Request.
 
