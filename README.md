@@ -400,6 +400,11 @@ This feature supports tracking network requests triggered within the application
 
 </details>
 
+<details>
+  <summary><b>Clean up</summary>
+"cleanup" api support is not available in older browsers(Chrome: < 66, Mozila: < 57, Safari: < 12.1)
+</details>
+
 
 ## FAQ
 
