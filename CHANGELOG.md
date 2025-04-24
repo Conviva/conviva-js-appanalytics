@@ -2,7 +2,7 @@
 
 ## 1.1.7 (24/APR/2025)
 
-- Fixes issue with TypeScript declarations not compatible with legacy frameworks like Angular 6 using older TypeScript versions.
+- Fixes compatibility issues with typescript declarations in legacy frameworks like Angular 6.
 
 ## 1.1.6 (04/APR/2025)
 
