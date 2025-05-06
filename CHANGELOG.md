@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.8 (06/MAY/2025)
+* Supports limiting of burst in reporting errors
+* Fixes issue in collecting link clicks in multi-page applications.
+* Supports setting proxy for the gateway url.
+
 ## 1.1.7 (24/APR/2025)
 
 - Fixes compatibility issues with typescript declarations in legacy frameworks like Angular 6.
