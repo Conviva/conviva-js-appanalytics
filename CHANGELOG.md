@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.9 (23/MAY/2025)
+* Supports click tracking in shadow dom when in open mode.
+* Introduces custom attribute collection for click tracking.
+
 ## 1.1.8 (06/MAY/2025)
 * Supports limiting of burst in reporting errors
 * Fixes issue in collecting link clicks in multi-page applications.
