@@ -12,18 +12,22 @@ Use Conviva JavaScript ECO SDK to auto-collect events and track application-spec
 ## Quick Start
 
 ### 1. Installation
+<!--self-serve[NPM/Yarn]-->
 
 - Install the Conviva JavaScript ECO SDK using either **npm** or **yarn**:
+<!-- :::code-tabs[NPM,Yarn] -->
 
-```plaintext
+```NPM
 npm install @convivainc/conviva-js-appanalytics
 ```
 
-```plaintext
+```Yarn
 yarn add @convivainc/conviva-js-appanalytics
 ```
+<!-- ::: -->
 
 **Note**: For script-based integrations, refer [Conviva JS Script ECO SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
+ <!--eof-self-serve--> 
 
 ### 2. Initialization
 
@@ -43,17 +47,17 @@ import {
 
 ```js
 convivaAppTracker({
-	appId: 'YOUR_APP_NAME_AS_STRING',
-	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-	appVersion: '1.1.0',
+	appId: 'YOUR_APP_NAME',
+	convivaCustomerKey: 'YOUR_CUSTOMER_KEY',
+	appVersion: 'plugin_version',
 });
 ```
 
-**appId** - A string value that uniquely identifies your app across platforms. For example: `"WEB App"`, `"LGTV App"`.
+**YOUR_APP_NAME** - A string value that uniquely identifies your app across platforms. For example: `"WEB App"`, `"LGTV App"`.
 
-**convivaCustomerKey** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_).
+**YOUR_CUSTOMER_KEY** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_).
 
-**appVersion** - Set app version in string format.
+**plugin_version** - Set app version in string format.
 
 ### 3. Set the User ID
 
