@@ -84,6 +84,7 @@ After steps 1–4, verify [auto-collected events](#auto-collected-events) in the
 ## More Features
 
 <details>
+<!--self-serve-custom-event-->
 <summary><b>Track Custom Event</b></summary>
     
 Use the **trackCustomEvent()** API to track all kinds of events. This API provides 2 fields to describe the tracked events:
@@ -106,10 +107,11 @@ trackCustomEvent({
 	data: customData,
 });
 ```
-
+<!--eof-self-serve-custom-event--> 
 </details>
 
 <details>
+<!--self-serve-custom-event-->
 <summary><b>Set Custom Tags</b></summary>
 
 Custom Tags are global tags applied to all events and persist throughout the application lifespan, or until they are removed.
@@ -132,7 +134,7 @@ import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
 let customTagsData = ['tagKey2', 'tagKey3'];
 unsetCustomTags(customTagsData);
 ```
-
+<!--eof-self-serve-custom-event--> 
 </details>
 
 <details>
