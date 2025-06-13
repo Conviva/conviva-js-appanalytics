@@ -49,7 +49,7 @@ import {
 convivaAppTracker({
 	appId: 'YOUR_APP_NAME',
 	convivaCustomerKey: 'YOUR_CUSTOMER_KEY',
-	appVersion: 'plugin_version',
+	appVersion: '1.1.0',
 });
 ```
 
@@ -57,7 +57,7 @@ convivaAppTracker({
 
 **YOUR_CUSTOMER_KEY** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_).
 
-**plugin_version** - Set app version in string format.
+**appVersion** - Set app version in string format.
 
 ### 3. Set the User ID
 
