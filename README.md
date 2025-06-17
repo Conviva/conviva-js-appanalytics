@@ -12,18 +12,22 @@ Use Conviva JavaScript ECO SDK to auto-collect events and track application-spec
 ## Quick Start
 
 ### 1. Installation
+<!--self-serve[NPM/Yarn]-->
 
 - Install the Conviva JavaScript ECO SDK using either **npm** or **yarn**:
+<!-- :::code-tabs[NPM,Yarn] -->
 
-```plaintext
+```NPM
 npm install @convivainc/conviva-js-appanalytics
 ```
 
-```plaintext
+```Yarn
 yarn add @convivainc/conviva-js-appanalytics
 ```
+<!-- ::: -->
 
 **Note**: For script-based integrations, refer [Conviva JS Script ECO SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
+ <!--eof-self-serve--> 
 
 ### 2. Initialization
 
@@ -43,15 +47,15 @@ import {
 
 ```js
 convivaAppTracker({
-	appId: 'YOUR_APP_NAME_AS_STRING',
-	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+	appId: 'YOUR_APP_NAME',
+	convivaCustomerKey: 'YOUR_CUSTOMER_KEY',
 	appVersion: '1.1.0',
 });
 ```
 
-**appId** - A string value that uniquely identifies your app across platforms. For example: `"WEB App"`, `"LGTV App"`.
+**YOUR_APP_NAME** - A string value that uniquely identifies your app across platforms. For example: `"WEB App"`, `"LGTV App"`.
 
-**convivaCustomerKey** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_).
+**YOUR_CUSTOMER_KEY** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_).
 
 **appVersion** - Set app version in string format.
 
@@ -80,6 +84,7 @@ After steps 1–4, verify [auto-collected events](#auto-collected-events) in the
 ## More Features
 
 <details>
+<!--self-serve-custom-event-->
 <summary><b>Track Custom Event</b></summary>
     
 Use the **trackCustomEvent()** API to track all kinds of events. This API provides 2 fields to describe the tracked events:
@@ -102,10 +107,11 @@ trackCustomEvent({
 	data: customData,
 });
 ```
-
+<!--eof-self-serve-custom-event--> 
 </details>
 
 <details>
+<!--self-serve-custom-event-->
 <summary><b>Set Custom Tags</b></summary>
 
 Custom Tags are global tags applied to all events and persist throughout the application lifespan, or until they are removed.
@@ -128,7 +134,7 @@ import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
 let customTagsData = ['tagKey2', 'tagKey3'];
 unsetCustomTags(customTagsData);
 ```
-
+<!--eof-self-serve-custom-event--> 
 </details>
 
 <details>
