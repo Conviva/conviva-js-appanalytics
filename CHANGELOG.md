@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.10 (20/JUNE/2025)
+* Enhanced click detection
+* Parses NWR response bodies even when the Content-Length header is missing
+
 ## 1.1.9 (23/MAY/2025)
 * Supports click tracking in shadow dom when in open mode.
 * Introduces custom attribute collection for click tracking.

@@ -69,6 +69,16 @@ setUserId('replace_me_by_the_userId');
 
 ### 4. Report Page View
 
+trackPageView() should be called after the page is considered "loaded" by your application—that is, when content is rendered and ready for user interaction. Avoid calling it too early (e.g., before the main content or layout is visible), as this may result in incomplete timing data.
+
+What defines a "page change"?
+This depends on your app type:
+
+For MPAs: Every full page reload is a new page.
+For SPAs: A new page is usually identified by URL path or route changes.
+
+Developers should trigger pageview() based on what they define as a meaningful navigation or view transition in their application.
+
 By default, when `trackPageView()` is called, the _Page Title_ is set using `document.title`. However, you can override this by passing a custom title in the `trackPageView()` API:
 
 ```js
@@ -414,7 +424,7 @@ This feature supports tracking network requests triggered within the application
 
 Collected only when:
 
-- Size is < 10KB and content-length is available.
+- Size is < 10KB.
 - Response body is type JSON.
 - Content-type is `"json"`, `"text/plain"`, `"text/javascript"` or `"application/javascript"`.
 - Response Type is not "opaque"
