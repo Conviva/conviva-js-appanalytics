@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.11 (01/JUL/2025)
+* Support added for 'text/html' Content-Type
+
 ## 1.1.10 (20/JUNE/2025)
 * Enhanced click detection
 * Parses NWR response bodies even when the Content-Length header is missing
