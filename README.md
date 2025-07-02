@@ -88,7 +88,7 @@ trackPageView();
 // Pass a custom Page Title
 trackPageView({ title: 'Custom Page Title' });
 ```
-**Note**: If you don’t call trackPageView() during a navigation event, that view will not be tracked — and any metrics tied to it (e.g., Page Views, Avg Perceived Page Load Time, Avg Largest Contentful Paint Time) will be missing. We do not infer or auto-capture missed views.
+**Note**: The Web (JS/React) SDK does not collect page views if the trackPageView() API is not explicitly called during a navigation event. As a result, corresponding metrics (such as Page Views, Avg Perceived Page Load Time, Avg Largest Contentful Paint Time) will be missing from the Pulse dashboard. Conviva does not support auto-collection of missing page views.
 
 After steps 1–4, verify [auto-collected events](#auto-collected-events) in the [validation dashboard](https://pulse.conviva.com/app/appmanager/ecoIntegration/validation) . (_Conviva login required_)
 
