@@ -427,7 +427,7 @@ Collected only when:
 
 - Size is < 10KB.
 - Response body is type JSON.
-- Content-type is `"json"`, `"text/plain"`, `"text/javascript"` or `"application/javascript"`.
+- Content-type contains `"json"` or equals any of `"text/plain"`, `"text/javascript"`, `"application/javascript"`, `"text/html"`
 - Response Type is not "opaque"
 
 **Request and Response Header Collection:**
