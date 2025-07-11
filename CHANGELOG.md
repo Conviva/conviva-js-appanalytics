@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.14 (11/JUL/2025)
+* Supports extracting query params from page URLs & network request URLs. To enable it, please contact the Conviva Support team.
+
 ## 1.1.11 (01/JUL/2025)
 * Support added for 'text/html' Content-Type
 
