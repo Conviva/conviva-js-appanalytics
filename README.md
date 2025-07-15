@@ -62,6 +62,7 @@ convivaAppTracker({
 ### 3. Set the User ID
 
 User ID is a unique string identifier to distinguish individual viewers. If using [Conviva Video Sensor](https://github.com/Conviva/conviva-js-coresdk), match it with the **Viewer ID**.
+Note: Set the User ID as soon as Conviva sensor is initialized so that none of the events are missed from User's timeline.
 
 ```js
 setUserId('replace_me_by_the_userId');
