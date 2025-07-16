@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.15 (16/JUL/2025)
+* Supports persisting custom selectors after page refresh
+
 ## 1.1.14 (11/JUL/2025)
 * Supports extracting query params from page URLs & network request URLs. To enable it, please contact the Conviva Support team.
 
