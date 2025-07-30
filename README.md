@@ -445,6 +445,7 @@ Collected only when:
 </details>
 
 ### Validation
+
 After steps 1–4, verify [auto-collected events](#auto-collected-events) in the [validation dashboard](https://pulse.conviva.com/app/appmanager/ecoIntegration/validation) . (_Conviva login required_)
 
 ## FAQ
