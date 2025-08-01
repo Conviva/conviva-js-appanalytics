@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.17 (01/AUG/2025)
+* Support added to enable and disable common events through application configuration
+
 ## 1.1.16 (29/JUL/2025)
 * Enhanced XMLHttpRequest interception to improve performance
 
