@@ -316,7 +316,7 @@ convivaAppTracker({
     <summary><b>The table of predefined metadata keys for deviceMetadata</b></summary>
 
 
-| Key                    | Type                                | Description                                                                                                              | Example Values                                                                          |
+| **Key**                    | **Type**                                | **Description**                                                                                                              | **Example Values**                                                                          |
 | ---------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | --- |
 | DeviceBrand            | string                              | Brand of the device                                                                                                      | `"Comcast"`, `"LG"`, `"Google"`, `"Vizio"`                                              |
 | DeviceManufacturer     | string                              | Manufacturer of the device                                                                                               | `"Sony"`, `"Comcast"`, `"Google"`, `"Microsoft"`                                        |
