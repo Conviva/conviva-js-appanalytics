@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.2 (19/AUG/2025)
+* Introduces Intelligent Collection of SSE & WebSocket events designed to optimize data collection while ensuring flexibility and actionable insights with reduced volume:
+  - Controls volume through Activation rules (Collect or Block).
+  - Controls collection of attributes in SSE / WebSocket message payloads
+  - Supports filtering based on request URL's hostname, path, scheme, and filtering based on attributes in SSE / WebSocket messages.
+* Supports cookie support for sharing clId within subdomains based on config `enableClIdInCookies` passed in tracker init. 
+* Fixes issue in application's readyState checks that depended XMLHttpRequest.UNSENT, XMLHttpRequest.OPENED, XMLHttpRequest.HEADERS_RECEIVED, XMLHttpRequest.LOADING, XMLHttpRequest.DONE. The fix now intelligently intercepts XHRs without any modifications to original behaviour.
+* Fixes issue window undefined when initialising our tracker inside server side app.
+
+## 1.2.0-beta (30/JUL/2025)
+* Supports auto-collection of Server-Sent Events (SSE).
+* Supports WebSocket message stream tracking with comprehensive event monitoring (open, close, send, message, error).
+
 ## 1.1.17 (01/AUG/2025)
 * Support added to enable and disable common events through application configuration
 
