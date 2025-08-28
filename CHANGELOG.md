@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3 (28/AUG/2025)
+* Introduces Session Replay
+  - Session Replay enables the visual reconstruction and review of user navigations and actions within a customer's app. This feature captures how users interact with the app, including clicks, navigation, scrolling, media engagement, and text input, and then replays these interactions in a video-like experience.
+
+  NOTE: By default, Session Replay is disabled. To enable it, please contact the Conviva Support team.
+
 ## 1.3.2 (19/AUG/2025)
 * Introduces Intelligent Collection of SSE & WebSocket events designed to optimize data collection while ensuring flexibility and actionable insights with reduced volume:
   - Controls volume through Activation rules (Collect or Block).
