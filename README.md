@@ -411,6 +411,7 @@ Conviva automatically collects rich set of app performance metrics through app e
 | page_loaded              | On `"load"` event listener.Used to compute Page Loads, Avg Document Load Time, Avg DNS Lookup Time, Avg Document Response Time metrics. |
 | Server-Sent Events | Supports Server-Sent Event (SSE) via Fetch eventstream. |
 | WebSocket message stream | When WebSocket events occur (open, close, send, receive, error) for real-time communication tracking. |
+| Event source message stream | When Event source events occur (open, send, receive, error) for real-time communication tracking. |
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
 
@@ -470,7 +471,7 @@ Collected only when:
 </details>
 
 <details>
-  <summary><b>SSE and Websocket</summary>
+  <summary><b>SSE, Websocket and Event source</summary>
     Only supports json payload
 </details>
 

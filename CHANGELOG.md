@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.8 (12/SEP/2025)
+* Supports event source message stream tracking with comprehensive event monitoring (open, send, message, error).
+* Introduces baggageConfiguration to set conviva client ID & conversation Id into baggage header for agent backend propogation.
+* ISupports for Salesforce's lazy loaded agent detection.
+* IDue to lazy load of ui, overlap was persisting in replay. This has been fixed. Now there will be no persisting overlaps.
+* IFix for blobs upload with no payload.
+
 ## 1.4.4-beta (04/SEP/2025)
 * Supports request or respose size upto 20KB
 
