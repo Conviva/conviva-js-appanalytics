@@ -6,6 +6,7 @@
 * Supports for Salesforce's lazy loaded agent detection.
 * Due to lazy load of ui, overlap was persisting in replay. This has been fixed. Now there will be no persisting overlaps.
 * Fix for blobs upload with no payload.
+* Fix issue of not collecting request body(rqb) attributes when request object instance is passed to fetch api instead of raw json body.
 
 ## 1.4.4-beta (04/SEP/2025)
 * Supports request or respose size upto 20KB
