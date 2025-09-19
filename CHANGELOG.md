@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.9 (19/SEP/2025)
+* Support for Configuration based inference of Rich content for SSE messages through fetch, event stream and websocket events.
+
 ## 1.4.8 (12/SEP/2025)
 * Supports event source message stream tracking with comprehensive event monitoring (open, send, message, error).
 * Introduces baggageConfiguration to set conviva client ID & conversation Id into baggage header for agent backend propogation.
