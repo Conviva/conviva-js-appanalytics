@@ -450,8 +450,9 @@ This feature supports tracking network requests triggered within the application
 **Request and Response Body Collection:**
 
 Collected only when:
-
-- Size is < 10KB.
+- Size is < Size limit
+    - Default Size Limit is 10 KB.
+    - Configurable via Remote configuration.
 - Response body is type JSON.
 - Content-type contains `"json"` or equals any of `"text/plain"`, `"text/javascript"`, `"application/javascript"`, `"text/html"`
 - Response Type is not "opaque"

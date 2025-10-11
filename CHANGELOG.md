@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.13 (11/OCT/2025)
+* Added support for configuring a maximum size limit for request and response body parsing during network request tracking.
+* Video-to-app events now include deserialized newsc, oldsc, tags and ced values.
+* conviva_video_custom_events are now available as regular raw events.
+
 ## 1.4.11 (30/SEP/2025)
 * Introduces Soft Navigation event for Single Page Applications. To enable it, please contact the Conviva Support team. 
 * Fixes issue of loadEventEnd timestamp being 0 (zero) in conviva_window_loaded event.
