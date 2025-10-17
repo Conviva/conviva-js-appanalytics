@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.17 (17/OCT/2025)
+* Fixed an issue where headers were being forwarded as standard header objects instead of retaining their original state in fetch network requests.
+* Decoupled page-ping and metatag tracking from the page view event.
+
 ## 1.4.13 (11/OCT/2025)
 * Added support for configuring a maximum size limit for request and response body parsing during network request tracking.
 * Video-to-app events now include deserialized newsc, oldsc, tags and ced values.

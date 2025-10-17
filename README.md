@@ -473,7 +473,8 @@ Collected only when:
 
 <details>
   <summary><b>SSE, Websocket and Event source</summary>
-    Only supports json payload
+    Only supports json payload for SSE and Event source.
+    Supports json and Array Buffer for websocket.
 </details>
 
 ### Validation 
