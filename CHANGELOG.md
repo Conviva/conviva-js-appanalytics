@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.19 (04/NOV/2025)
+* Supports collection of xpath attribute for clicks.
+* Supports extraction of specific DOM elements using remote configuration.
+
 ## 1.4.17 (17/OCT/2025)
 * Fixed an issue where headers were being forwarded as standard header objects instead of retaining their original state in fetch network requests.
 * Decoupled page-ping and metatag tracking from the page view event.

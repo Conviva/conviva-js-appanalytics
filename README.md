@@ -1,6 +1,6 @@
-# Conviva JavaScript ECO SDK
+# Conviva JavaScript DPI SDK
 
-Use Conviva JavaScript ECO SDK to auto-collect events and track application-specific events and state changes.
+Use Conviva JavaScript DPI SDK to auto-collect events and track application-specific events and state changes.
 
 **Table of Contents**
 
@@ -14,7 +14,7 @@ Use Conviva JavaScript ECO SDK to auto-collect events and track application-spec
 ### 1. Installation
 <!--self-serve[NPM/Yarn]-->
 
-- Install the Conviva JavaScript ECO SDK using either **npm** or **yarn**:
+- Install the Conviva JavaScript DPI SDK using either **npm** or **yarn**:
 <!-- :::code-tabs[NPM,Yarn] -->
 
 ```NPM
@@ -26,7 +26,7 @@ yarn add @convivainc/conviva-js-appanalytics
 ```
 <!-- ::: -->
 
-**Note**: For script-based integrations, refer [Conviva JS Script ECO SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
+**Note**: For script-based integrations, refer [Conviva JS Script DPI SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
  <!--eof-self-serve--> 
 
 ### 2. Initialization
@@ -41,7 +41,7 @@ import {
 } from '@convivainc/conviva-js-appanalytics';
 ```
 
-- Initialize the Conviva JavaScript ECO SDK:
+- Initialize the Conviva JavaScript DPI SDK:
 
 **Note**: It is recommended to initialize the tracker as early **as possible** during the DOM load sequence, such as in `App.js`.
 
@@ -172,14 +172,14 @@ try {
 <details>
 <summary><b>Client ID Synchronization</b></summary>
 
-When using multiple Conviva JavaScript ECO SDK instances across different environments (e.g., subdomains of the same customer or mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
+When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., subdomains of the same customer or mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
 
 Use Cases:
 
 - Synchronizing Client ID between a mobile app and WebView.
 - Synchronizing Client ID across subdomains.
 
-**Note**: The Conviva JavaScript ECO SDK utilizes **local storage** to cache some data.
+**Note**: The Conviva JavaScript DPI SDK utilizes **local storage** to cache some data.
 
 - `getClientId()` – Retrieves the current Client ID
 - `setClientId(clientId)` – Sets a specific Client ID
@@ -428,9 +428,9 @@ The collection of all types of clicks is automatically supported, including thos
 **Migration of Pulse dimensions for clicks**
 
 Starting with version [v1.1.2](https://github.com/Conviva/conviva-js-appanalytics/releases/tag/v1.1.2) of the SDK, the attribute keys for click events have been updated.
-If you are using v1.1.1 or earlier and currently mapping `elementText`, you must update your configuration when upgrading to v1.1.2 or later. Specifically, update the mapping in [ECO Activation](https://pulse.conviva.com/app/activation/home) by mapping `elementText` to `text`, then redeploy to apply the changes.
+If you are using v1.1.1 or earlier and currently mapping `elementText`, you must update your configuration when upgrading to v1.1.2 or later. Specifically, update the mapping in [DPI Activation](https://pulse.conviva.com/app/activation/home) by mapping `elementText` to `text`, then redeploy to apply the changes.
 
-To ensure metrics reflect the updates, please review and update your event/metric mappings in [ECO Activation](https://pulse.conviva.com/app/activation/home) if you are using any of the following attributes:
+To ensure metrics reflect the updates, please review and update your event/metric mappings in [DPI Activation](https://pulse.conviva.com/app/activation/home) if you are using any of the following attributes:
 | <=v1.1.1 | >=v1.1.2 |
 |--------------------------------|--------------------------------|
 | elementType | elementType |
@@ -483,4 +483,4 @@ After steps 1–4, verify [auto-collected events](#auto-collected-events) in the
 
 ## FAQ
 
-[ECO Integration FAQ](https://pulse.conviva.com/learning-center/content/sensor_developer_center/tools/eco_integration/eco_integration_faq.htm)
+[DPI Integration FAQ](https://pulse.conviva.com/learning-center/content/sensor_developer_center/tools/eco_integration/eco_integration_faq.htm)
