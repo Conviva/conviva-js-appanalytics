@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.5.0 (15/DEC/2025)
+* Supports manual network request tracking via trackNetworkRequest API. Read more: [Track Network Request Event](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#more-features)
+
 ## 1.4.19 (04/NOV/2025)
 * Supports collection of xpath attribute for clicks.
 * Supports extraction of specific DOM elements using remote configuration.
