@@ -451,6 +451,7 @@ Conviva automatically collects rich set of app performance metrics through app e
 | Server-Sent Events | Supports Server-Sent Event (SSE) via Fetch eventstream. |
 | WebSocket message stream | When WebSocket events occur (open, close, send, receive, error) for real-time communication tracking. |
 | Event source message stream | When Event source events occur (open, send, receive, error) for real-time communication tracking. |
+| Core Web Vitals(LCP, INP, CLS) | On `visibilitychange` / first user interaction. [Refer web-vitals](https://www.npmjs.com/package/web-vitals/v/5.1.0) |
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
 
