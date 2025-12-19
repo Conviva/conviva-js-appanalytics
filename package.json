@@ -1,10 +1,10 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "1.5.1",
-  "description": "Conviva ECO Sensor library",
+  "version": "1.5.2",
+  "description": "Conviva DPI Sensor library",
   "main": "conviva-js-appanalytics.js",
   "dependencies": {
-    "@convivainc/browser-tracker-core": "1.1.20",
+    "@convivainc/browser-tracker-core": "1.1.21",
     "@convivainc/tracker-core": "1.1.16"
   },
   "repository": {

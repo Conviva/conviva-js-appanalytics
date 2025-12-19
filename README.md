@@ -301,6 +301,27 @@ convivaAppTracker({
 </details>
 
 <details>
+<summary><b>Replay</b></summary>
+From release 1.5.2 onwards to avail the replay feature follow the below instruction
+
+#### NPM
+
+```bash
+npm install @convivainc/conviva-js-replay
+```
+
+#### Simple Usage (Recommended)
+
+```typescript
+import { init } from '@convivainc/conviva-js-replay';
+
+// Just provide your customer key - that's it!
+init('CONVIVA_ACCOUNT_CUSTOMER_KEY');
+```
+
+</details>
+
+<details>
 <summary><b>Set Device Metadata</b></summary>
 
 `deviceMetadata` is an object containing key-value pairs for predefined values, such as DeviceType and DeviceCategory, as well as additional properties like DeviceBrand, DeviceManufacturer, and DeviceModel.

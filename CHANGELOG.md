@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.5.2 (19/DEC/2025)
+* Separated out Cohort replay as a different package available in https://www.npmjs.com/package/@convivainc/conviva-js-replay . To integrate the feature please refer the instructions https://github.com/Conviva/conviva-js-script-appanalytics/blob/main/README.md#more-features. Contact Conviva support team to enable this feature.
+
 ## 1.5.1 (17/DEC/2025)
 * Fixed App freeze issue on tab switch when cohort replay is enabled.
 * Enable shorter video playback upto 2 mins.
