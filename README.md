@@ -317,8 +317,8 @@ import { init } from '@convivainc/conviva-js-replay';
 
 // Just provide your customer key - that's it!
 init('CONVIVA_ACCOUNT_CUSTOMER_KEY');
-```
 //ADD THIS BEFORE APP TRACKER INITIALISATION
+```
 </details>
 
 <details>
