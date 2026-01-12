@@ -319,6 +319,30 @@ import { init } from '@convivainc/conviva-js-replay';
 init('CONVIVA_ACCOUNT_CUSTOMER_KEY');
 //ADD THIS BEFORE APP TRACKER INITIALISATION
 ```
+
+#### Important configurations
+
+##### Content Security Policy (CSP): allow Web Workers (Blob)
+Some environments enforce a strict Content Security Policy (CSP). The SDK uses a Web Worker created from a blob: URL, which requires explicitly allowing workers.
+Add the following directive to your site’s Content-Security-Policy:
+```typescript
+Content-Security-Policy: worker-src 'self' blob:;
+```
+**Notes**
+1. If your policy already includes worker-src, extend it to include blob:.
+2. If worker-src is not defined, browsers may fall back to script-src, which can prevent worker creation.
+
+##### CORS: allow loading required external assets (CSS/SVG)
+On many websites, required assets (commonly CSS files or SVGs) may be hosted on a different origin (domain/subdomain). If those assets are blocked by cross-origin restrictions, configure the hosting server/CDN to allow cross-origin access.
+Ensure the asset server returns appropriate CORS response headers, such as:
+```typescript
+Access-Control-Allow-Origin: https://pulse.conviva.com
+// If the host changes or a new host is introduced in the future, it should be allowed as well.
+```
+Or, if your security policy allows it:
+```typescript
+Access-Control-Allow-Origin: *
+```
 </details>
 
 <details>
