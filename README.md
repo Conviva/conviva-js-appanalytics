@@ -61,7 +61,7 @@ convivaAppTracker({
 
 **Important configurations**
 ```typescript
-Content-Security-Policy: connect-src 'self' https://rc.conviva.com/ http://appgw.conviva.com/;
+Content-Security-Policy: connect-src 'self' https://rc.conviva.com/ http://appgw.conviva.com/ https://rcg.conviva.com/;
 ```
 
 ### 3. Set the User ID
