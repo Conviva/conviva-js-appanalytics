@@ -59,6 +59,11 @@ convivaAppTracker({
 
 **appVersion** - Set app version in string format.
 
+**Important configurations**
+```typescript
+Content-Security-Policy: connect-src 'self' https://rc.conviva.com/ http://appgw.conviva.com/;
+```
+
 ### 3. Set the User ID
 
 User ID is a unique string identifier to distinguish individual viewers. If using [Conviva Video Sensor](https://github.com/Conviva/conviva-js-coresdk), match it with the **Viewer ID**.
