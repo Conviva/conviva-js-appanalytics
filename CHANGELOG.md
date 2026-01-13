@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.5 (13/JAN/2026)
+* Enhanced the remote configuration feature to support instant updates.
+* Fixed issue where events were lost on browser tab close or link click in multi-page applications.
+* Fixed issue where page query parameters were not collected for initial events sent before the page-view event or window load event.
+
 ## 1.5.2 (19/DEC/2025)
 * Separated out Cohort replay as a different package available in https://www.npmjs.com/package/@convivainc/conviva-js-replay . To integrate the feature please refer the instructions https://github.com/Conviva/conviva-js-script-appanalytics/blob/main/README.md#more-features. Contact Conviva support team to enable this feature.
 
