@@ -480,6 +480,100 @@ trackNetworkRequest({ requestDetails, responseDetails });
 <!--eof-self-serve-custom-event-->
 </details>
 
+<details>
+<!--self-serve-custom-event-->
+<summary><b>Track Revenue Event</b></summary>
+
+Use `trackRevenueEvent()` to track purchase and revenue events. The event is sent as `conviva_revenue_event` and can be used for Business/Revenue Metrics in Pulse.
+
+**Required Fields:**
+
+| Field | Type | Description |
+|---|---|---|
+| `totalOrderAmount` | `number` | Total order amount (must be a finite number) |
+| `transactionId` | `string` | Unique order/transaction identifier (non-empty string) |
+| `currency` | `string` | Currency code e.g. `'USD'`, `'EUR'` (non-empty string) |
+
+**Optional Fields:**
+
+| Field | Type | Description |
+|---|---|---|
+| `taxAmount` | `number` | Tax amount |
+| `shippingCost` | `number` | Shipping cost |
+| `discount` | `number` | Discount / coupon value |
+| `cartSize` | `number` | Count of items in the order |
+| `paymentMethod` | `string` | e.g. `'card'`, `'ApplePay'`, `'payPal'` |
+| `paymentProvider` | `string` | e.g. `'Stripe'`, `'Adyen'` |
+| `orderStatus` | `string` | e.g. `'completed'`, `'pending'` |
+| `items` | `RevenueEventItem[]` | Array of purchased line items |
+| `extraMetadata` | `object` | Custom key/value pairs for fields not covered above |
+
+**Notes:**
+- If validation fails on required fields (e.g. missing `transactionId` or non-finite `totalOrderAmount`), the SDK logs a warning and skips the event without throwing.
+- Optional fields with unexpected types are omitted from the event payload and do not cause errors.
+
+**Example — minimal:**
+
+```js
+import { trackRevenueEvent } from '@convivainc/conviva-js-appanalytics';
+
+trackRevenueEvent({
+	totalOrderAmount: 49.99,
+	transactionId: 'ORD-12345',
+	currency: 'USD',
+});
+```
+
+**Example — full (TypeScript):**
+
+```typescript
+import {
+	trackRevenueEvent,
+	RevenueEvent,
+	RevenueEventItem,
+} from '@convivainc/conviva-js-appanalytics';
+
+const items: RevenueEventItem[] = [
+	{ productId: 'p1', name: 'Widget', unitPrice: 19.99, quantity: 2 },
+	{ productId: 'p2', name: 'Gadget', unitPrice: 19.99, quantity: 1 },
+];
+
+const revenueEvent: RevenueEvent = {
+	totalOrderAmount: 59.97,
+	transactionId: 'ORD-12345',
+	currency: 'USD',
+	taxAmount: 5.00,
+	shippingCost: 4.99,
+	discount: 10.00,
+	cartSize: 3,
+	paymentMethod: 'card',
+	paymentProvider: 'Stripe',
+	orderStatus: 'completed',
+	items,
+	extraMetadata: { promoCode: 'SAVE10', campaignId: 'summer-sale' },
+};
+
+trackRevenueEvent(revenueEvent);
+```
+<!--eof-self-serve-custom-event-->
+</details>
+
+<details>
+<summary><b>Tracker Cleanup</b></summary>
+
+Use `cleanup()` to release all resources held by the tracker — removes event listeners, clears timers, and resets internal state. This is useful when you need to re-initialize the tracker (e.g., after user logout or SPA route teardown).
+
+```js
+import { cleanup } from '@convivainc/conviva-js-appanalytics';
+
+cleanup();
+```
+
+After calling `cleanup()`, you can re-initialize the tracker by calling `convivaAppTracker()` again.
+
+**Note:** `cleanup()` is not supported on older browsers (Chrome < 66, Firefox < 57, Safari < 12.1).
+</details>
+
 ## Auto-collected Events
 
 Conviva automatically collects rich set of app performance metrics through app events after completing the [Quick Start](#quick-start).
@@ -557,8 +651,8 @@ Collected only when:
 </details>
 
 <details>
-  <summary><b>Clean up</summary>
-"cleanup" api support is not available in older browsers(Chrome: < 66, Mozila: < 57, Safari: < 12.1)
+  <summary><b>Cleanup API browser support</b></summary>
+The <code>cleanup()</code> API is not supported on older browsers (Chrome &lt; 66, Firefox &lt; 57, Safari &lt; 12.1). See the <b>Tracker Cleanup</b> section above for usage details.
 </details>
 
 <details>
