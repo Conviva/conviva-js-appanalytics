@@ -1,4 +1,4 @@
-import { TrackerConfiguration, BrowserTracker, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, DisableAnonymousTrackingConfiguration, EnableAnonymousTrackingConfiguration, AnonymousTrackingOptions, FlushBufferConfiguration, PageViewEvent, ClearUserDataConfiguration, ErrorEventProperties, RequestDetails, ResponseDetails } from '@convivainc/browser-tracker-core';
+import { TrackerConfiguration, BrowserTracker, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, DisableAnonymousTrackingConfiguration, EnableAnonymousTrackingConfiguration, AnonymousTrackingOptions, FlushBufferConfiguration, PageViewEvent, ClearUserDataConfiguration, ErrorEventProperties, RequestDetails, ResponseDetails, RevenueEvent, RevenueEventItem } from '@convivainc/browser-tracker-core';
 import { version, CommonEventProperties, ConditionalContextProvider, ContextPrimitive, ContextGenerator, FilterProvider, RuleSetProvider, SelfDescribingEvent, SelfDescribingJson, StructuredEvent, CustomEvent, ContextEvent, ContextFilter, RuleSet, clickElementEvent, CustomTags } from '@convivainc/tracker-core';
 /**
  * Initialise a new tracker
@@ -52,6 +52,14 @@ declare function trackPageView(event?: PageViewEvent & CommonEventProperties, tr
  * @param trackers - The tracker identifiers which the event will be sent to
  */
 declare function trackCustomEvent(event: CustomEvent & CommonEventProperties, trackers?: Array<string>): void;
+/**
+ * Track a revenue/purchase event.
+ * Forwards to custom event conviva_revenue_event. Use for Business Metrics (Revenue Metrics).
+ *
+ * @param event - Revenue event (totalOrderAmount, orderId/transactionId, currency, etc.)
+ * @param trackers - The tracker identifiers which the event will be sent to
+ */
+declare function trackRevenueEvent(event: RevenueEvent & CommonEventProperties, trackers?: Array<string>): void;
 /**
  * Track a Network Request event
  * A classic style of tracking network requests
@@ -133,4 +141,4 @@ declare function trackButtonClick(event: clickElementEvent & CommonEventProperti
  */
 declare function trackLinkClick(event: clickElementEvent & CommonEventProperties, trackers?: Array<string>): void;
 declare function trackError(event: ErrorEventProperties & CommonEventProperties, trackers?: Array<string>): void;
-export { convivaAppTracker, BrowserTracker, TrackerConfiguration, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, version, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, FlushBufferConfiguration, PageViewEvent, EnableAnonymousTrackingConfiguration, DisableAnonymousTrackingConfiguration, AnonymousTrackingOptions, ClearUserDataConfiguration, ConditionalContextProvider, ContextPrimitive, SelfDescribingEvent, SelfDescribingJson, CommonEventProperties, StructuredEvent, CustomEvent, ContextGenerator, FilterProvider, RuleSetProvider, ContextEvent, ContextFilter, RuleSet, ErrorEventProperties, CustomTags, RequestDetails, ResponseDetails, setReferrerUrl, setCustomUrl, setDocumentTitle, setUserId, trackPageView, trackCustomEvent, trackNetworkRequest, setCustomTags, unsetCustomTags, cleanup, getClientId, setClientId, setConversationId, trackButtonClick, trackLinkClick, trackError };
+export { convivaAppTracker, BrowserTracker, TrackerConfiguration, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, version, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, FlushBufferConfiguration, PageViewEvent, EnableAnonymousTrackingConfiguration, DisableAnonymousTrackingConfiguration, AnonymousTrackingOptions, ClearUserDataConfiguration, ConditionalContextProvider, ContextPrimitive, SelfDescribingEvent, SelfDescribingJson, CommonEventProperties, StructuredEvent, CustomEvent, ContextGenerator, FilterProvider, RuleSetProvider, ContextEvent, ContextFilter, RuleSet, ErrorEventProperties, CustomTags, RequestDetails, ResponseDetails, RevenueEvent, RevenueEventItem, setReferrerUrl, setCustomUrl, setDocumentTitle, setUserId, trackPageView, trackCustomEvent, trackRevenueEvent, trackNetworkRequest, setCustomTags, unsetCustomTags, cleanup, getClientId, setClientId, setConversationId, trackButtonClick, trackLinkClick, trackError };

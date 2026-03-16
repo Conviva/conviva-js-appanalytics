@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0 (16/MAR/2026)
+* Separated out Cohort replay as a different package available in https://www.npmjs.com/package/@convivainc/conviva-js-replay . To integrate the feature please refer the instructions https://github.com/Conviva/conviva-js-script-appanalytics/blob/main/README.md#more-features. Contact Conviva support team to enable this feature.
+* Introduces `trackRevenueEvent()` API to track purchase and revenue events. Events are forwarded as `conviva_revenue_event` and can be used for Business/Revenue Metrics in Pulse. Read more: [Track Revenue Event](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#more-features)
+* Reduces bundle size by approximately 39 KB by replacing the internal compression library.
+* Resolved an issue in the sampling logic to ensure more accurate and consistent data representation.
+* Introduced diagnostic information tracking for cohort replay.
+
 ## 1.5.5 (13/JAN/2026)
 * Enhanced the remote configuration feature to support instant updates.
 * Fixed issue where events were lost on browser tab close or link click in multi-page applications.
