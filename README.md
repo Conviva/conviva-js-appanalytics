@@ -333,9 +333,16 @@ Add the following directive to your site’s Content-Security-Policy:
 ```typescript
 Content-Security-Policy: worker-src 'self' blob:;
 ```
+
 **Notes**
 1. If your policy already includes worker-src, extend it to include blob:.
 2. If worker-src is not defined, browsers may fall back to script-src, which can prevent worker creation.
+
+##### For replay support till version 1.5.1 please add below CSP configuration.
+    
+```typescript
+Content-Security-Policy: script-src 'self' cdnjs.cloudflare.com;
+```
 
 ##### CORS: allow loading required external assets (CSS/SVG)
 On many websites, required assets (commonly CSS files or SVGs) may be hosted on a different origin (domain/subdomain). If those assets are blocked by cross-origin restrictions, configure the hosting server/CDN to allow cross-origin access.
@@ -671,17 +678,6 @@ Replay data for that origin will resume only after the application is relaunched
 **Notes**
 1. This limitation applies on a per-origin basis.
 2. Once the user revisits the same origin, replay capture and availability continue as expected.
-</details>
-
-<details>
-  <summary>For replay support till version 1.5.1</summary>
-    
-Please add below CSP configuration.
-    
-```typescript
-Content-Security-Policy: script-src 'self' cdnjs.cloudflare.com;
-```
-
 </details>
 
 ### Validation 
