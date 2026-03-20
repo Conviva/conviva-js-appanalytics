@@ -673,6 +673,17 @@ Replay data for that origin will resume only after the application is relaunched
 2. Once the user revisits the same origin, replay capture and availability continue as expected.
 </details>
 
+<details>
+  <summary>For replay support till version 1.5.1</summary>
+    
+Please add below CSP configuration.
+    
+```typescript
+Content-Security-Policy: 'script-src 'self' cdnjs.cloudflare.com;
+```
+
+</details>
+
 ### Validation 
 
 After steps 1–4, verify [auto-collected events](#auto-collected-events) in the [validation dashboard](https://pulse.conviva.com/app/appmanager/ecoIntegration/validation) . (_Conviva login required_)
