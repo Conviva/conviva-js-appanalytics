@@ -1,6 +1,6 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Conviva DPI Sensor library",
   "main": "conviva-js-appanalytics.js",
   "dependencies": {

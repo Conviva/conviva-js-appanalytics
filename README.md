@@ -68,6 +68,31 @@ convivaAppTracker({
 Content-Security-Policy: connect-src 'self' https://rc.conviva.com/ http://appgw.conviva.com/ https://rcg.conviva.com/;
 ```
 
+#### Calling APIs before initialization
+
+API calls made before `convivaAppTracker()` is initialized (e.g., `trackCustomEvent`, `trackRevenueEvent`, `setUserId`) are automatically queued and replayed once the tracker is initialized. This allows you to instrument your app without waiting for the tracker to be ready.
+
+```js
+import {
+	convivaAppTracker,
+	setUserId,
+	trackCustomEvent,
+} from '@convivainc/conviva-js-appanalytics';
+
+// Safe to call before convivaAppTracker() — will be replayed after init
+setUserId('user-123');
+trackCustomEvent({ name: 'app_start', data: {} });
+
+// Initialize later
+convivaAppTracker({
+	appId: 'YOUR_APP_NAME',
+	convivaCustomerKey: 'YOUR_CUSTOMER_KEY',
+	appVersion: '1.1.0',
+});
+```
+
+**Note:** `getClientId` and `setClientId` are not queued — they execute independently of tracker initialization.
+
 ### 3. Set the User ID
 
 User ID is a unique string identifier to distinguish individual viewers. If using [Conviva Video Sensor](https://github.com/Conviva/conviva-js-coresdk), match it with the **Viewer ID**.
@@ -520,8 +545,8 @@ Use `trackRevenueEvent()` to track purchase and revenue events. The event is sen
 | `extraMetadata` | `object` | Custom key/value pairs for fields not covered above |
 
 **Notes:**
-- If validation fails on required fields (e.g. missing `transactionId` or non-finite `totalOrderAmount`), the SDK logs a warning and skips the event without throwing.
-- Optional fields with unexpected types are omitted from the event payload and do not cause errors.
+- If validation fails on required fields (e.g. missing `transactionId` or non-finite `totalOrderAmount`) or the event argument is not a plain object, the SDK logs a warning and skips the event without throwing.
+- Optional fields with unexpected types are stripped with a warning; the event is still sent.
 
 **Example — minimal:**
 
@@ -606,7 +631,8 @@ Conviva automatically collects rich set of app performance metrics through app e
 | Server-Sent Events | Supports Server-Sent Event (SSE) via Fetch eventstream. |
 | WebSocket message stream | When WebSocket events occur (open, close, send, receive, error) for real-time communication tracking. |
 | Event source message stream | When Event source events occur (open, send, receive, error) for real-time communication tracking. |
-| Core Web Vitals(LCP, INP, CLS) | On `visibilitychange` / first user interaction. [Refer web-vitals](https://www.npmjs.com/package/web-vitals/v/5.1.0) |
+| Core Web Vitals (LCP, INP, CLS) | At pagehide/visibilitychange. LCP: Chromium, Firefox. INP, CLS: Chromium. [Refer web-vitals](https://www.npmjs.com/package/web-vitals/v/5.1.0) |
+| Supplementary Web Vitals (FCP, TTFB) | Early in page load, once after navigation. Chromium, Firefox, Safari. Enabled when both `webVitals.enabled: true` and `webVitals.enabledAdditionalMetrics: true` in remote config. |
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
 
