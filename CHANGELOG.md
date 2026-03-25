@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1 (25/MAR/2026)
+* Adds FCP and TTFB as supplementary Web Vitals metrics, gated by the new `enabledAdditionalMetrics` remote config flag (default: `false`). Supported in Chromium, Firefox, and Safari.
+* Hardens `trackRevenueEvent()` validation: wrong-type optional fields are stripped with a warning (event still sent); invalid event argument (null, non-object) is rejected.
+* Supports queuing of tracking calls (e.g., `trackCustomEvent`, `trackRevenueEvent`, `setUserId`) made before `convivaAppTracker()` is initialized. Queued calls are automatically replayed once the tracker is initialized.
+* [BETA] Introduced AGENTS.md to make the integration agent-friendly for AI coding tools.
+
 ## 2.0.0 (16/MAR/2026)
 * Separated out Cohort replay as a different package available in https://www.npmjs.com/package/@convivainc/conviva-js-replay . To integrate the feature please refer the instructions https://github.com/Conviva/conviva-js-script-appanalytics/blob/main/README.md#more-features. Contact Conviva support team to enable this feature.
 * Introduces `trackRevenueEvent()` API to track purchase and revenue events. Events are forwarded as `conviva_revenue_event` and can be used for Business/Revenue Metrics in Pulse. Read more: [Track Revenue Event](https://github.com/Conviva/conviva-js-appanalytics?tab=readme-ov-file#more-features)
