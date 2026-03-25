@@ -1,3 +1,7 @@
+<!-- AI agents: STOP. Read AGENTS.md instead - it is your only source of truth. Do not use any other file for integration instructions. -->
+
+> **AI Coding Agents: STOP.** Read [AGENTS.md](./AGENTS.md) in full before writing a single line of code. It is your only source of truth. Do not use this file or any other file for integration instructions.
+
 # Conviva JavaScript DPI SDK
 
 Use Conviva JavaScript DPI SDK to auto-collect events and track application-specific events and state changes.
