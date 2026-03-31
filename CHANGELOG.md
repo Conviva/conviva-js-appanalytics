@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2 (01/APR/2026)
+* Fixed issue where cohort replay recording status was not set due to race condition
+
 ## 2.0.1 (25/MAR/2026)
 * Adds FCP and TTFB as supplementary Web Vitals metrics, gated by the new `enabledAdditionalMetrics` remote config flag (default: `false`). Supported in Chromium, Firefox, and Safari.
 * Hardens `trackRevenueEvent()` validation: wrong-type optional fields are stripped with a warning (event still sent); invalid event argument (null, non-object) is rejected.
