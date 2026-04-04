@@ -526,7 +526,7 @@ trackNetworkRequest({ requestDetails, responseDetails });
 <!--self-serve-custom-event-->
 <summary><b>Track Revenue Event</b></summary>
 
-Use `trackRevenueEvent()` to track purchase and revenue events. The event is sent as `conviva_revenue_event` and can be used for Business/Revenue Metrics in Pulse.
+Use `trackRevenueEvent()` to track successful purchase revenue events. The event is sent as `conviva_revenue_event` and can be used for Business/Revenue Metrics in Conviva.
 
 **Required Fields:**
 
