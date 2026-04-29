@@ -101,14 +101,14 @@ convivaAppTracker({
 
 ### 3. Cross Sub-domain Session Management
 
-When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., subdomains of the same customer or mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
+Conviva stores the Client ID in a first-party cookie scoped to the parent domain. Any subdomain that runs the sensor reads the same cookie and reuses the existing Client ID — no application code required.
 
-Subdomains:
 **Auto sync Client ID using cookie**
 
 Syncs clientId within subdomains by storing it in cookie with key name `Conviva_sdkConfig`.
 
-Other Use Cases:
+**Other Use Cases (Hybrid apps)**: 
+When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
 
 Eg: Synchronizing Client ID between a mobile app and WebView.
   
