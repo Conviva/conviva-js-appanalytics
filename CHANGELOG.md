@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0 (29/APR/2026)
+* Scroll Depth Tracking: Automatically measures how far users scroll down each page, firing events at configurable depth milestones (25%, 50%, 75%, 100% by default). Also fires a scroll_reset events when orientation / size of page changes.
+* Form Lifecycle Tracking: Captures user interactions with web forms.
+* Client ID cookie enabled by default: The tracker now persists the client ID in a cookie automatically — no configuration required. Set enableClIdInCookies: false explicitly to opt out.
+* Agents.MD updated to understand clientID residing in cookie. First preference is given to cookies, fallback uses set/getClientID APIs.
+
 ## 2.0.2 (01/APR/2026)
 * Fixed issue where cohort replay recording status was not set due to race condition
 
