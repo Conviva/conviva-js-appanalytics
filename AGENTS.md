@@ -45,6 +45,10 @@ Never initialize the SDK inside render functions, loops, router hooks that run r
 
 All APIs marked `[OPTIONAL]` in the API surface block must not be added to any integration unless the developer explicitly asks for them.
 
+## Always wrap integration code using try-catch
+
+All the Conviva integration code generated into application must be wrapped inside try catch blocks. They must not cause unhandled exceptions or crashes.
+
 ---
 
 # Allowed SDK API Surface
@@ -206,11 +210,27 @@ Recommended locations: global error handler, framework error boundary, logging s
 
 ---
 
-# Client ID Synchronization — Optional
+# Client ID Synchronization
 
+**Conviva Client ID is automatically stored in cookies during initialization**
+Check with developer if he/she wants to disable the use of cookie named "Conviva_sdkConfig" by SDK. To disable, modify step 4: Initialize SDK to following:
+
+```js
+convivaAppTracker({
+  appId: "APP_ID",
+  convivaCustomerKey: "CUSTOMER_KEY",
+  appVersion: "APP_VERSION",
+  configs:{
+    enableClIdInCookies: false
+  }
+});
+```
+
+## *Optional*
 **Agents must NOT implement `getClientId` or `setClientId` unless the developer explicitly requests it.**
 
-These APIs are for special use cases only, such as synchronizing a Conviva client ID across multiple domains or subdomains. Do not add them to a standard single-domain integration.
+These APIs are for special use cases only, such as synchronizing a Conviva client ID across multiple domains or subdomains. These APIs must be used only when enableClidInCookies is set to false during initialization.
+Do not add them to a standard single-domain integration.
 
 When requested:
 
