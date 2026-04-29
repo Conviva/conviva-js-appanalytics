@@ -99,7 +99,79 @@ convivaAppTracker({
 
 **Note:** `getClientId` and `setClientId` are not queued — they execute independently of tracker initialization.
 
-### 3. Set the User ID
+### 3. Cross Sub-domain Session Management
+
+When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., subdomains of the same customer or mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
+
+Subdomains:
+**Auto sync Client ID using cookie**
+
+Syncs clientId within subdomains by storing it in cookie with key name `Conviva_sdkConfig`.
+
+Other Use Cases:
+
+Eg: Synchronizing Client ID between a mobile app and WebView.
+  
+- `getClientId()` – Retrieves the current Client ID
+- `setClientId(clientId)` – Sets a specific Client ID
+
+**Retrieve the Client ID**
+
+```js
+import {
+	convivaAppTracker,
+	getClientId,
+} from '@convivainc/conviva-js-appanalytics';
+
+convivaAppTracker({
+	appId: 'YOUR_APP_NAME_AS_STRING',
+	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+	appVersion: '1.1.0',
+});
+
+// Always call getClientId() after initializing convivaAppTracker()
+clientId = getClientId();
+```
+
+**Set the Client ID**
+
+```js
+import {
+	convivaAppTracker,
+	getClientId,
+} from '@convivainc/conviva-js-appanalytics';
+
+// Always call setClientId() before initializing convivaAppTracker() to set a specific clientId
+setClientId(clientId);
+
+convivaAppTracker({
+	appId: 'YOUR_APP_NAME_AS_STRING',
+	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+	appVersion: '1.1.0',
+});
+```
+
+***Disable sharing clientId using cookie***
+
+To disable sharing clientId using cookie, you need to set the `enableClIdInCookies` configuration as false during SDK initialization.
+
+```js
+import {
+	convivaAppTracker,
+} from '@convivainc/conviva-js-appanalytics';
+
+convivaAppTracker({
+	appId: 'YOUR_APP_NAME_AS_STRING',
+	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
+	appVersion: '1.1.0',
+	configs: {
+		enableClIdInCookies: false
+	},
+});
+```
+**Note**: The Conviva JavaScript DPI SDK utilizes **local storage** to cache some data.
+
+### 4. Set the User ID
 
 User ID is a unique string identifier to distinguish individual viewers. If using [Conviva Video Sensor](https://github.com/Conviva/conviva-js-coresdk), match it with the **Viewer ID**.
 Note: Set the User ID as soon as Conviva sensor is initialized so that none of the events are missed from User's timeline.
@@ -108,7 +180,7 @@ Note: Set the User ID as soon as Conviva sensor is initialized so that none of t
 setUserId('replace_me_by_the_userId');
 ```
 
-### 4. Report Page View
+### 5. Report Page View
 
 trackPageView() should be called after the page is considered "loaded" by your application—that is, when content is rendered and ready for user interaction. Avoid calling it too early (e.g., before the main content or layout is visible), as this may result in incomplete timing data.
 
@@ -205,82 +277,6 @@ try {
 		error: error, // Passing the caught error object.
 	});
 }
-```
-
-</details>
-
-<details>
-<summary><b>Client ID Synchronization</b></summary>
-
-When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., subdomains of the same customer or mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
-
-Use Cases:
-
-- Synchronizing Client ID between a mobile app and WebView.
-- Synchronizing Client ID across subdomains.
-
-**Note**: The Conviva JavaScript DPI SDK utilizes **local storage** to cache some data.
-
-- `getClientId()` – Retrieves the current Client ID
-- `setClientId(clientId)` – Sets a specific Client ID
-
-**Retrieve the Client ID**
-
-```js
-import {
-	convivaAppTracker,
-	getClientId,
-} from '@convivainc/conviva-js-appanalytics';
-
-convivaAppTracker({
-	appId: 'YOUR_APP_NAME_AS_STRING',
-	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-	appVersion: '1.1.0',
-});
-
-// Always call getClientId() after initializing convivaAppTracker()
-clientId = getClientId();
-```
-
-**Set the Client ID**
-
-```js
-import {
-	convivaAppTracker,
-	getClientId,
-} from '@convivainc/conviva-js-appanalytics';
-
-// Always call setClientId() before initializing convivaAppTracker() to set a specific clientId
-setClientId(clientId);
-
-convivaAppTracker({
-	appId: 'YOUR_APP_NAME_AS_STRING',
-	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-	appVersion: '1.1.0',
-});
-```
-
-**Auto sync Client ID using cookie**
-
-Syncs clientId within subdomains by storing it in cookie with key name `Conviva_sdkConfig`.
-
-***Configure sharing clientId using cookie***
-
-To share clientId using cookie, you need to set the `enableClIdInCookies` configuration as true during SDK initialization.
-
-```js
-import {
-	convivaAppTracker,
-} from '@convivainc/conviva-js-appanalytics';
-
-convivaAppTracker({
-	appId: 'YOUR_APP_NAME_AS_STRING',
-	convivaCustomerKey: 'CONVIVA_ACCOUNT_CUSTOMER_KEY',
-	appVersion: '1.1.0',
-	configs: {
-		enableClIdInCookies: true
-	},
-});
 ```
 
 </details>
