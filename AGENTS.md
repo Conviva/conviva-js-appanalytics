@@ -65,6 +65,10 @@ import {
   getClientId,          // [OPTIONAL] Retrieve Conviva client ID — only for special use cases (e.g. multi-domain)
   setClientId,          // [OPTIONAL] Provide client ID — only for special use cases (e.g. multi-domain)
   trackNetworkRequest,  // [OPTIONAL] Manually track network requests — implement only when explicitly requested
+  trackFormView,             // [OPTIONAL] Report a form view — implement only when explicitly requested
+  trackFormSubmitSuccess,    // [OPTIONAL] Report a successful form submission — implement only when explicitly requested
+  trackFormSubmitError,      // [OPTIONAL] Report a failed form submission — implement only when explicitly requested
+  trackFormValidationError,  // [OPTIONAL] Report a field-level validation error — implement only when explicitly requested
   ConvivaDeviceMetadata // [OPTIONAL] Device metadata schema — required only for TV/STB environments
 } from "@convivainc/conviva-js-appanalytics";
 ```
@@ -283,6 +287,44 @@ trackNetworkRequest({ requestDetails, responseDetails });
 
 ---
 
+# Form Tracking — Optional
+
+Form tracking is **automatic and remotely controlled**. When enabled by Conviva remote configuration, the SDK collects form interaction events (form start, field blur, submit attempt, validation errors) without any code changes. Auto-collected events use the form's `id` or `data-form-id` attribute as `form_id`. PII redaction (passwords, denylisted field names) is handled automatically.
+
+**Agents must NOT add manual form tracking calls proactively.** Implement only when the developer explicitly requests them — typically to capture lifecycle moments the SDK cannot infer from the DOM (e.g. server-side submit results, custom client-side validation).
+
+Manual APIs:
+
+```js
+import {
+  trackFormView,
+  trackFormSubmitSuccess,
+  trackFormSubmitError,
+  trackFormValidationError,
+} from "@convivainc/conviva-js-appanalytics";
+
+// Form became visible to the user.
+trackFormView("signup-form");
+
+// Server accepted the submission.
+trackFormSubmitSuccess("signup-form");
+
+// Submission rejected (server error, network failure, business rule, etc.).
+trackFormSubmitError("signup-form", "email_already_registered");
+
+// Custom client-side validation error not surfaced via the browser's
+// constraint validation API.
+trackFormValidationError("signup-form", "email", "invalid_format");
+```
+
+Rules:
+- The first argument (`formId`) must match the form's `id` or `data-form-id` attribute so manual events correlate with auto-collected events.
+- `errorType` and `fieldName` must be stable, non-PII strings.
+- Manual form events are no-ops when form tracking is disabled in remote configuration — do not promise the developer they will fire unconditionally.
+- Do NOT invent additional form-tracking configuration flags inside `convivaAppTracker({ configs: ... })`. Form tracking is controlled remotely.
+
+---
+
 # Device Metadata — Optional (TV/STB only)
 
 Required only for Smart TV or Set-Top Box environments where device metadata cannot be auto-detected. Not needed for standard web/SPA/MPA integrations.
@@ -368,6 +410,10 @@ Do NOT implement `trackCustomEvent` or `trackError` proactively — only add the
 Do NOT implement `getClientId` or `setClientId` in a standard integration — these are for special use cases only (e.g. multi-domain client ID synchronization).
 
 Do NOT implement `trackNetworkRequest`, `setCustomTags`, `unsetCustomTags`, or `ConvivaDeviceMetadata` proactively — only add them when explicitly requested by the developer.
+
+Do NOT implement `trackFormView`, `trackFormSubmitSuccess`, `trackFormSubmitError`, or `trackFormValidationError` proactively — form tracking is auto-collected and remotely controlled; only add the manual APIs when the developer explicitly asks for them.
+
+Do NOT invent form-tracking configuration flags (e.g. `formTracking`, `trackFields`, `fieldDenylist`) inside `convivaAppTracker({ configs: ... })` — form tracking is controlled by Conviva remote configuration, not by client-side options.
 
 ---
 
