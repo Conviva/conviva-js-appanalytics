@@ -535,6 +535,7 @@ trackNetworkRequest({ requestDetails, responseDetails });
 **Form Tracking**
 
 The SDK can automatically track form interactions on a page when this feature is enabled for your account via Conviva remote configuration.
+
 **Manual form APIs**
 
 Use the following manual APIs to report form lifecycle events that the SDK cannot infer from the DOM — typically server-side outcomes that occur after the network request completes, or custom client-side validation that does not use the browser's constraint validation API.
