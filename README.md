@@ -1,4 +1,4 @@
-
+<!-- AI agents: STOP. Read AGENTS.md instead - it is your only source of truth. Do not use any other file for integration instructions. -->
 
 > **AI Coding Agents: STOP.** Read [AGENTS.md](./AGENTS.md) in full before writing a single line of code. It is your only source of truth. Do not use this file or any other file for integration instructions.
 
@@ -16,20 +16,16 @@ Use Conviva JavaScript DPI SDK to auto-collect events and track application-spec
 ## Quick Start
 
 ### AI Prompt
-
 The developer can use directly this prompt in their AI powered IDE's like Cursor, AntiGravity, VIsual Code Copilot to integrate Conviva DPI SDK.
-
 ```
 Integrate Conviva JS DPI SDK using https://github.com/Conviva/conviva-js-appanalytics
 ```
 
 ### 1. Installation
-
-
+<!--self-serve[NPM/Yarn]-->
 
 - Install the Conviva JavaScript DPI SDK using either **npm** or **yarn**:
-
-
+<!-- :::code-tabs[NPM,Yarn] -->
 
 ```NPM
 npm install @convivainc/conviva-js-appanalytics
@@ -38,11 +34,10 @@ npm install @convivainc/conviva-js-appanalytics
 ```Yarn
 yarn add @convivainc/conviva-js-appanalytics
 ```
-
-
+<!-- ::: -->
 
 **Note**: For script-based integrations, refer [Conviva JS Script DPI SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
-  
+ <!--eof-self-serve--> 
 
 ### 2. Initialization
 
@@ -70,12 +65,11 @@ convivaAppTracker({
 
 **YOUR_APP_NAME** - A string value that uniquely identifies your app across platforms. For example: `"WEB App"`, `"LGTV App"`.
 
-**YOUR_CUSTOMER_KEY** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (*Conviva login required*).
+**YOUR_CUSTOMER_KEY** - A string to identify a specific customer account. Use different keys for dev and prod. Find them in [Pulse](https://pulse.conviva.com/app/profile/applications) under My Profile (_Conviva login required_).
 
 **appVersion** - Set app version in string format.
 
 **Important configurations**
-
 ```typescript
 Content-Security-Policy: connect-src 'self' https://rc.conviva.com/ http://appgw.conviva.com/ https://rcg.conviva.com/;
 ```
@@ -117,7 +111,7 @@ Syncs clientId within subdomains by storing it in cookie with key name `Conviva_
 When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
 
 Eg: Synchronizing Client ID between a mobile app and WebView.
-
+  
 - `getClientId()` – Retrieves the current Client ID
 - `setClientId(clientId)` – Sets a specific Client ID
 
@@ -175,7 +169,6 @@ convivaAppTracker({
 	},
 });
 ```
-
 **Note**: The Conviva JavaScript DPI SDK utilizes **local storage** to cache some data.
 
 ### 4. Set the User ID
@@ -199,7 +192,7 @@ For SPAs: A new page is usually identified by URL path or route changes.
 
 Developers should trigger pageview() based on what they define as a meaningful navigation or view transition in their application.
 
-By default, when `trackPageView()` is called, the *Page Title* is set using `document.title`. However, you can override this by passing a custom title in the `trackPageView()` API:
+By default, when `trackPageView()` is called, the _Page Title_ is set using `document.title`. However, you can override this by passing a custom title in the `trackPageView()` API:
 
 ```js
 // Uses document.title as the Page Title
@@ -208,13 +201,15 @@ trackPageView();
 // Pass a custom Page Title
 trackPageView({ title: 'Custom Page Title' });
 ```
-
 **Note**: The Web (JS/React) SDK does not collect page views if the trackPageView() API is not explicitly called during a navigation event. As a result, corresponding metrics (such as Page Views, Avg Perceived Page Load Time, Avg Largest Contentful Paint Time) will be missing from the Pulse dashboard. Conviva does not support auto-collection of missing page views.
+
 
 ## More Features
 
-**Track Custom Event**
-
+<details>
+<!--self-serve-custom-event-->
+<summary><b>Track Custom Event</b></summary>
+    
 Use the **trackCustomEvent()** API to track all kinds of events. This API provides 2 fields to describe the tracked events:
 
 **name** - Name of the custom event
@@ -235,12 +230,12 @@ trackCustomEvent({
 	data: customData,
 });
 ```
+<!--eof-self-serve-custom-event--> 
+</details>
 
-
-
-
-
-**Set Custom Tags**
+<details>
+<!--self-serve-custom-event-->
+<summary><b>Set Custom Tags</b></summary>
 
 Custom Tags are global tags applied to all events and persist throughout the application lifespan, or until they are removed.
 
@@ -262,13 +257,12 @@ import { unsetCustomTags } from '@convivainc/conviva-js-appanalytics';
 let customTagsData = ['tagKey2', 'tagKey3'];
 unsetCustomTags(customTagsData);
 ```
+<!--eof-self-serve-custom-event--> 
+</details>
 
-
-
-
-
-**Error Reporting**
-
+<details>
+    <summary><b>Error Reporting</b></summary>
+    
 Uncaught exceptions and unhandled rejections are automatically collected and enabled by default. To report caught exceptions or other errors, use the following API:
 
 ```js
@@ -285,9 +279,10 @@ try {
 }
 ```
 
+</details>
 
-
-**Meta Tags Collection**
+<details>
+<summary><b>Meta Tags Collection </b></summary>
 
 This feature enables tracking of meta tags from the `<head>` section of an HTML page based on the provided configuration.
 
@@ -339,9 +334,11 @@ convivaAppTracker({
 });
 ```
 
+</details>
 
-
-**Replay** From release 1.5.2 onwards to avail the replay feature follow the below instruction
+<details>
+<summary><b>Replay</b></summary>
+From release 1.5.2 onwards to avail the replay feature follow the below instruction
 
 #### NPM
 
@@ -362,44 +359,37 @@ init('CONVIVA_ACCOUNT_CUSTOMER_KEY');
 #### Important configurations
 
 ##### Content Security Policy (CSP): allow Web Workers (Blob)
-
 Some environments enforce a strict Content Security Policy (CSP). The SDK uses a Web Worker created from a blob: URL, which requires explicitly allowing workers.
 Add the following directive to your site’s Content-Security-Policy:
-
 ```typescript
 Content-Security-Policy: worker-src 'self' blob:;
 ```
 
 **Notes**
-
 1. If your policy already includes worker-src, extend it to include blob:.
 2. If worker-src is not defined, browsers may fall back to script-src, which can prevent worker creation.
 
 ##### For replay support till version 1.5.1 please add below CSP configuration.
-
+    
 ```typescript
 Content-Security-Policy: script-src 'self' cdnjs.cloudflare.com;
 ```
 
 ##### CORS: allow loading required external assets (CSS/SVG)
-
 On many websites, required assets (commonly CSS files or SVGs) may be hosted on a different origin (domain/subdomain). If those assets are blocked by cross-origin restrictions, configure the hosting server/CDN to allow cross-origin access.
 Ensure the asset server returns appropriate CORS response headers, such as:
-
 ```typescript
 Access-Control-Allow-Origin: https://pulse.conviva.com
 // If the host changes or a new host is introduced in the future, it should be allowed as well.
 ```
-
 Or, if your security policy allows it:
-
 ```typescript
 Access-Control-Allow-Origin: *
 ```
+</details>
 
-
-
-**Set Device Metadata**
+<details>
+<summary><b>Set Device Metadata</b></summary>
 
 `deviceMetadata` is an object containing key-value pairs for predefined values, such as DeviceType and DeviceCategory, as well as additional properties like DeviceBrand, DeviceManufacturer, and DeviceModel.
 
@@ -433,10 +423,11 @@ convivaAppTracker({
 });
 ```
 
-**The table of predefined metadata keys for deviceMetadata**
+<details>
+    <summary><b>The table of predefined metadata keys for deviceMetadata</b></summary>
 
 
-| **Key**                | **Type**                            | **Description**                                                                                                          | **Example Values**                                                                      |
+| **Key**                    | **Type**                                | **Description**                                                                                                              | **Example Values**                                                                          |
 | ---------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
 | DeviceBrand            | string                              | Brand of the device                                                                                                      | `"Comcast"`, `"LG"`, `"Google"`, `"Vizio"`                                              |
 | DeviceManufacturer     | string                              | Manufacturer of the device                                                                                               | `"Sony"`, `"Comcast"`, `"Google"`, `"Microsoft"`                                        |
@@ -447,11 +438,9 @@ convivaAppTracker({
 | OperatingSystemVersion | string                              | Version of the operating system used by the device                                                                       | `"10.10.1"`, `"8.1"`, `"T-INFOLINK2012-1012"`, `"1.56.500000"`                          |
 | DeviceCategory         | Prescribed values of DeviceCategory | Device category to which the used device belongs. Only allows DeviceCategory values and discards any other string values | WEB, AND, PS (see [table below](#devicetype-pre-defined-string-values))                 |
 | FrameworkName          | string                              | Application framework name                                                                                               | `"React TV"`, `"LightningJS"`, `"Angular"`                                              |
-| FrameworkVersion       | string                              | Application framework version                                                                                            | `"1.2.3"`                                                                               |
-
+| FrameworkVersion       | string                              | Application framework version                                                                                            | `"1.2.3"`                                                                               |     |
 
 #### DeviceCategory Pre-defined String Values:
-
 
 | Value     | Description                                                                                                                                                                                             |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -473,9 +462,7 @@ convivaAppTracker({
 | WIN       | The device is a Windows OS-based handheld device, like a Windows Phone or Windows Tablet.                                                                                                               |
 | XB        | The device is an Xbox console, including Xbox 360 and Xbox One.                                                                                                                                         |
 
-
 #### DeviceType Pre-defined String Values:
-
 
 | Value   | Description                                  |
 | ------- | -------------------------------------------- |
@@ -488,12 +475,13 @@ convivaAppTracker({
 | Vehicle | The device is a vehicle infotainment system. |
 | Other   | Other device types.                          |
 
+</details>
 
+</details>
 
-
-
-
-**Track Network Request Event**
+<details>
+<!--self-serve-custom-event-->
+<summary><b>Track Network Request Event</b></summary>
 
 Use the **trackNetworkRequest()** API to track all kinds of network events. This API provides 2 Objects to describe the tracked events:
 
@@ -527,12 +515,12 @@ const responseDetails = {
 trackNetworkRequest({ requestDetails, responseDetails });
 
 ```
+<!--eof-self-serve-custom-event-->
+</details>
 
-
-
-
-
-**Form Tracking**
+<details>
+<!--self-serve-custom-event-->
+<summary><b>Form Tracking</b></summary>
 
 The SDK can automatically track form interactions on a page when this feature is enabled for your account via Conviva remote configuration.
 
@@ -579,42 +567,39 @@ trackFormValidationError('signup-form', 'email', 'invalid_format');
 - Pass the same `formId` used by your DOM (`id` or `data-form-id`) so manual events correlate with the auto-collected `conviva_form_`* events.
 - Do not include sensitive or personally identifiable values in `fieldName` or `errorType`.
 
+<!--eof-self-serve-custom-event-->
+</details>
 
 
-
-
-**Track Revenue Event**
+<details>
+<!--self-serve-custom-event-->
+<summary><b>Track Revenue Event</b></summary>
 
 Use `trackRevenueEvent()` to track purchase and revenue events. The event is sent as `conviva_revenue_event` and can be used for Business/Revenue Metrics in Pulse.
 
 **Required Fields:**
 
-
-| Field              | Type     | Description                                            |
-| ------------------ | -------- | ------------------------------------------------------ |
-| `totalOrderAmount` | `number` | Total order amount (must be a finite number)           |
-| `transactionId`    | `string` | Unique order/transaction identifier (non-empty string) |
-| `currency`         | `string` | Currency code e.g. `'USD'`, `'EUR'` (non-empty string) |
-
+| Field | Type | Description |
+|---|---|---|
+| `totalOrderAmount` | `number` | Total order amount (must be a finite number) |
+| `transactionId` | `string` | Unique order/transaction identifier (non-empty string) |
+| `currency` | `string` | Currency code e.g. `'USD'`, `'EUR'` (non-empty string) |
 
 **Optional Fields:**
 
-
-| Field             | Type                 | Description                                         |
-| ----------------- | -------------------- | --------------------------------------------------- |
-| `taxAmount`       | `number`             | Tax amount                                          |
-| `shippingCost`    | `number`             | Shipping cost                                       |
-| `discount`        | `number`             | Discount / coupon value                             |
-| `cartSize`        | `number`             | Count of items in the order                         |
-| `paymentMethod`   | `string`             | e.g. `'card'`, `'ApplePay'`, `'payPal'`             |
-| `paymentProvider` | `string`             | e.g. `'Stripe'`, `'Adyen'`                          |
-| `orderStatus`     | `string`             | e.g. `'completed'`, `'pending'`                     |
-| `items`           | `RevenueEventItem[]` | Array of purchased line items                       |
-| `extraMetadata`   | `object`             | Custom key/value pairs for fields not covered above |
-
+| Field | Type | Description |
+|---|---|---|
+| `taxAmount` | `number` | Tax amount |
+| `shippingCost` | `number` | Shipping cost |
+| `discount` | `number` | Discount / coupon value |
+| `cartSize` | `number` | Count of items in the order |
+| `paymentMethod` | `string` | e.g. `'card'`, `'ApplePay'`, `'payPal'` |
+| `paymentProvider` | `string` | e.g. `'Stripe'`, `'Adyen'` |
+| `orderStatus` | `string` | e.g. `'completed'`, `'pending'` |
+| `items` | `RevenueEventItem[]` | Array of purchased line items |
+| `extraMetadata` | `object` | Custom key/value pairs for fields not covered above |
 
 **Notes:**
-
 - If validation fails on required fields (e.g. missing `transactionId` or non-finite `totalOrderAmount`) or the event argument is not a plain object, the SDK logs a warning and skips the event without throwing.
 - Optional fields with unexpected types are stripped with a warning; the event is still sent.
 
@@ -661,12 +646,11 @@ const revenueEvent: RevenueEvent = {
 
 trackRevenueEvent(revenueEvent);
 ```
+<!--eof-self-serve-custom-event-->
+</details>
 
-
-
-
-
-**Tracker Cleanup**
+<details>
+<summary><b>Tracker Cleanup</b></summary>
 
 Use `cleanup()` to release all resources held by the tracker — removes event listeners, clears timers, and resets internal state. This is useful when you need to re-initialize the tracker (e.g., after user logout or SPA route teardown).
 
@@ -679,43 +663,42 @@ cleanup();
 After calling `cleanup()`, you can re-initialize the tracker by calling `convivaAppTracker()` again.
 
 **Note:** `cleanup()` is not supported on older browsers (Chrome < 66, Firefox < 57, Safari < 12.1).
-
-
+</details>
 
 ## Auto-collected Events
 
 Conviva automatically collects rich set of app performance metrics through app events after completing the [Quick Start](#quick-start).
 
-**Auto-collected events table**
+<details>
+  <summary><b>Auto-collected events table</b></summary>
 
-
-| Event                                | Occurrence                                                                                                                                                                                                                                                                                                                                                                                          |
-| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| network_request                      | After receiving the network request response. [Refer limitations](#limitations).                                                                                                                                                                                                                                                                                                                    |
-| application_error                    | When an error occurrs in the application.                                                                                                                                                                                                                                                                                                                                                           |
-| button_click                         | On the button click callback. [Refer limitations](#limitations).                                                                                                                                                                                                                                                                                                                                    |
-| link_click                           | On the link click callback. [Refer limitations](#limitations).                                                                                                                                                                                                                                                                                                                                      |
-| application_background               | When visibility state change to `hidden`.                                                                                                                                                                                                                                                                                                                                                           |
-| application_foreground               | When visibility state change to `visible`.                                                                                                                                                                                                                                                                                                                                                          |
-| Largest Contentful Paint             | Timing information about the largest image or text paint before user input on a web page.                                                                                                                                                                                                                                                                                                           |
-| First App Launch                     | First time launch in the browser. Custom Tag Context.                                                                                                                                                                                                                                                                                                                                               |
-| page_loaded                          | On `"load"` event listener.Used to compute Page Loads, Avg Document Load Time, Avg DNS Lookup Time, Avg Document Response Time metrics.                                                                                                                                                                                                                                                             |
-| Server-Sent Events                   | Supports Server-Sent Event (SSE) via Fetch eventstream.                                                                                                                                                                                                                                                                                                                                             |
-| WebSocket message stream             | When WebSocket events occur (open, close, send, receive, error) for real-time communication tracking.                                                                                                                                                                                                                                                                                               |
-| Event source message stream          | When Event source events occur (open, send, receive, error) for real-time communication tracking.                                                                                                                                                                                                                                                                                                   |
-| Core Web Vitals (LCP, INP, CLS)      | At pagehide/visibilitychange. LCP: Chromium, Firefox. INP, CLS: Chromium. [Refer web-vitals](https://www.npmjs.com/package/web-vitals/v/5.1.0)                                                                                                                                                                                                                                                      |
-| Supplementary Web Vitals (FCP, TTFB) | Early in page load, once after navigation. Chromium, Firefox, Safari. Enabled when both `webVitals.enabled: true` and `webVitals.enabledAdditionalMetrics: true` in remote config.                                                                                                                                                                                                                  |
-| form_tracking                        | When form: start, field-blur, submit, validation(only Html5 Validation) events occur. Automatically collects form life cycle events. Enabled when `formcc.en: true`. See [Form Tracking](#more-features) for more details                                                                                                                                                                           |
+| Event                    | Occurrence                                                                                                                              |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| network_request          | After receiving the network request response. [Refer limitations](#limitations).                                                        |
+| application_error        | When an error occurrs in the application.                                                                                               |
+| button_click             | On the button click callback. [Refer limitations](#limitations).                                                                        |
+| link_click               | On the link click callback. [Refer limitations](#limitations).                                                                          |
+| application_background   | When visibility state change to `hidden`.                                                                                               |
+| application_foreground   | When visibility state change to `visible`.                                                                                              |
+| Largest Contentful Paint | Timing information about the largest image or text paint before user input on a web page.                                               |
+| First App Launch         | First time launch in the browser. Custom Tag Context.                                                                                   |
+| page_loaded              | On `"load"` event listener.Used to compute Page Loads, Avg Document Load Time, Avg DNS Lookup Time, Avg Document Response Time metrics. |
+| Server-Sent Events | Supports Server-Sent Event (SSE) via Fetch eventstream. |
+| WebSocket message stream | When WebSocket events occur (open, close, send, receive, error) for real-time communication tracking. |
+| Event source message stream | When Event source events occur (open, send, receive, error) for real-time communication tracking. |
+| Core Web Vitals (LCP, INP, CLS) | At pagehide/visibilitychange. LCP: Chromium, Firefox. INP, CLS: Chromium. [Refer web-vitals](https://www.npmjs.com/package/web-vitals/v/5.1.0) |
+| Supplementary Web Vitals (FCP, TTFB) | Early in page load, once after navigation. Chromium, Firefox, Safari. Enabled when both `webVitals.enabled: true` and `webVitals.enabledAdditionalMetrics: true` in remote config. |
+| form_tracking                        | When form: start, field-blur, submit, validation(only Html5 Validation) events occur. Automatically collects form life cycle events. Enabled when `formcc.en: true`. See [Form Tracking](#more-features) for more details
 | scroll_tracking                      | When the user crosses a configured scroll-depth threshold or when a viewport resize / orientation change resets milestone state this event get triggered. Automatically captures scroll milestones, scroll resets, and scroll depth. Reports viewport width, page height, page width, scroll position (scrollY), and related metrics.Disabled by default; can be enabled via remote configuration. |
-
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
 
-
+</details>
 
 ### Limitations
 
-**Clicks**
+<details>
+  <summary><b>Clicks</b></summary>
 
 The collection of all types of clicks is automatically supported, including those from standard HTML elements as well as elements created using React, Angular, and Vue frameworks. We also offer an experimental remote configuration specifically for click events, aiming to dynamically add support for non-standard or unsupported frameworks. For further assistance, please contact the Conviva support team.
 **Note:** `preventDefault` and `stopPropagation` will prevent the auto-collection of button and link click events.
@@ -726,31 +709,28 @@ Starting with version [v1.1.2](https://github.com/Conviva/conviva-js-appanalytic
 If you are using v1.1.1 or earlier and currently mapping `elementText`, you must update your configuration when upgrading to v1.1.2 or later. Specifically, update the mapping in [DPI Activation](https://pulse.conviva.com/app/activation/home) by mapping `elementText` to `text`, then redeploy to apply the changes.
 
 To ensure metrics reflect the updates, please review and update your event/metric mappings in [DPI Activation](https://pulse.conviva.com/app/activation/home) if you are using any of the following attributes:
+| <=v1.1.1 | >=v1.1.2 |
+|--------------------------------|--------------------------------|
+| elementType | elementType |
+| elementText | text |
+| elementName | elementName |
+| elementValue | value |
+| elementId | id |
+| elementClasses | class |
 
+</details>
 
-| <=v1.1.1       | >=v1.1.2    |
-| -------------- | ----------- |
-| elementType    | elementType |
-| elementText    | text        |
-| elementName    | elementName |
-| elementValue   | value       |
-| elementId      | id          |
-| elementClasses | class       |
-
-
-
-
-**network_request**
+<details>
+  <summary><b>network_request</b></summary>
 
 This feature supports tracking network requests triggered within the application using `XMLHttpRequest` and the Fetch API.
 
 **Request and Response Body Collection:**
 
 Collected only when:
-
 - Size is < Size limit
-  - Default Size Limit is 10 KB.
-  - Configurable via Remote configuration.
+    - Default Size Limit is 10 KB.
+    - Configurable via Remote configuration.
 - Response body is type JSON.
 - Content-type contains `"json"` or equals any of `"text/plain"`, `"text/javascript"`, `"application/javascript"`, `"text/html"`
 - Response Type is not "opaque"
@@ -762,28 +742,34 @@ Collected only when:
 - The server is provisioned with `"Access-Control-Expose-Headers:"`.
 - Response Type is not "opaque"
 
+</details>
 
+<details>
+  <summary><b>Cleanup API browser support</b></summary>
+The <code>cleanup()</code> API is not supported on older browsers (Chrome &lt; 66, Firefox &lt; 57, Safari &lt; 12.1). See the <b>Tracker Cleanup</b> section above for usage details.
+</details>
 
-**Cleanup API browser support** The `cleanup()` API is not supported on older browsers (Chrome < 66, Firefox < 57, Safari < 12.1). See the **Tracker Cleanup** section above for usage details.
+<details>
+  <summary><b>SSE, Websocket and Event source</summary>
+    Only supports json payload for SSE and Event source.
+    Supports json and Array Buffer for websocket.
+</details>
 
-**SSE, Websocket and Event source Only supports json payload for SSE and Event source. Supports json and Array Buffer for websocket.**
-
-**Replay availability after tab close**
-
+<details>
+	<summary><b>Replay availability after tab close</summary>
+	
 If a user closes the browser tab after performing an activity, the last up to 1 minute of user activity per origin may not be available immediately.
 This duration represents the maximum possible gap; in most cases, the unavailable replay segment will be less than 1 minute.
 Replay data for that origin will resume only after the application is relaunched and the user returns to the same origin.
 	
 **Notes**
-
 1. This limitation applies on a per-origin basis.
 2. Once the user revisits the same origin, replay capture and availability continue as expected.
+</details>
 
+### Validation 
 
-
-### Validation
-
-After steps 1–4, verify [auto-collected events](#auto-collected-events) in the [validation dashboard](https://pulse.conviva.com/app/appmanager/ecoIntegration/validation) . (*Conviva login required*)
+After steps 1–4, verify [auto-collected events](#auto-collected-events) in the [validation dashboard](https://pulse.conviva.com/app/appmanager/ecoIntegration/validation) . (_Conviva login required_)
 
 ## FAQ
 
