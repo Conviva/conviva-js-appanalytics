@@ -107,6 +107,20 @@ Conviva stores the Client ID in a first-party cookie scoped to the parent domain
 
 Syncs clientId within subdomains by storing it in cookie with key name `Conviva_sdkConfig`.
 
+**Native + WebView combined session (no JS code required):** For hybrid apps that embed Conviva-instrumented web pages in a native WebView, the SDK can share a single Conviva clientId between the native app and the WebView so events from both sides land in one combined Conviva session.
+
+The recommended production flow is **native sets the cookie**:
+
+1. The native app (Android / iOS) sets the `Conviva_sdkConfig` cookie carrying its current Conviva clientId on the WebView's cookie store, scoped to the WebView page's parent domain, before the WebView loads the page.
+2. The JS SDK reads the cookie on initialization and reuses that clientId — no JS configuration change required.
+
+If the cookie cannot be set in time, the SDK auto-detects a native bridge object on `window` as a fallback:
+
+- **Android WebView** — expose `window.__ConvivaNativeWebInterface.getClientId(): string` (synchronous).
+- **iOS WKWebView** — expose `window.webkit.messageHandlers.__ConvivaiOSGetClientIdInterface` so the SDK can call `postMessage(null)` and receive a `Promise<string>` reply (`WKScriptMessageHandlerWithReply`, iOS 14+).
+
+When a bridge supplies a clientId that differs from the cached one, the SDK fires a `ConvivaClientIdChanged` CustomEvent on `window` so other in-tab consumers (e.g. session replay) can refresh their state. The `getClientId()` / `setClientId()` APIs below remain available for the multi-instance / cross-origin synchronization scenarios where no bridge is exposed.
+
 **Other Use Cases (Hybrid apps)**: 
 When using multiple Conviva JavaScript DPI SDK instances across different environments (e.g., mobile apps embedding webviews), the Client ID may not be shared automatically. To ensure consistency, the SDK provides the following advanced APIs for manual synchronization. These APIs are intended for developers who require fine-grained control over Client ID management across multiple instances.
 
@@ -339,6 +353,8 @@ convivaAppTracker({
 <details>
 <summary><b>Replay</b></summary>
 From release 1.5.2 onwards to avail the replay feature follow the below instruction
+
+> **Compatibility:** Cohort Replay **v1.0.4 or later** is required when using DPI SDK v2.2.0 or later ([release notes](https://github.com/Conviva/conviva-js-replay/releases/tag/v1.0.4)). Earlier replay versions are not compatible with DPI v2.2.0+ for session synchronization.
 
 #### NPM
 

@@ -1,11 +1,11 @@
 {
   "name": "@convivainc/conviva-js-appanalytics",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Conviva DPI Sensor library",
   "main": "conviva-js-appanalytics.js",
   "dependencies": {
-    "@convivainc/browser-tracker-core": "1.1.24",
-    "@convivainc/tracker-core": "1.1.18"
+    "@convivainc/browser-tracker-core": "1.1.25",
+    "@convivainc/tracker-core": "1.1.19"
   },
   "repository": {
     "type": "git",

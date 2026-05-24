@@ -243,6 +243,19 @@ getClientId();          // call after initialization
 setClientId(clientId);  // call before initialization
 ```
 
+## Native + WebView combined session — do NOT implement in app JS
+
+For hybrid apps that load a Conviva-instrumented web page inside a native WebView (Android or iOS), the SDK can share a single Conviva clientId between the native app and the WebView so events from both sides land in one combined Conviva session.
+
+This is configured **entirely on the native side**, not in the web app JS:
+
+- Recommended: the native app sets the `Conviva_sdkConfig` cookie on the WebView's cookie store (scoped to the parent domain) before loading the page. The JS SDK then picks the clientId up from the cookie automatically.
+- Fallback: the native app exposes a bridge object on `window` that the SDK auto-detects:
+  - Android WebView: `window.__ConvivaNativeWebInterface.getClientId(): string` (sync).
+  - iOS WKWebView: `window.webkit.messageHandlers.__ConvivaiOSGetClientIdInterface.postMessage(null)` returns `Promise<string>` (iOS 14+).
+
+Agents must NOT generate any JS in the web app to detect, call, polyfill, or shim these bridges, nor to write the `Conviva_sdkConfig` cookie. No `convivaAppTracker` configuration is needed to enable bridge or cookie consumption — the SDK handles both automatically.
+
 ---
 
 # Custom Tags — Optional
@@ -348,6 +361,8 @@ convivaAppTracker({
 ```
 npm install @convivainc/conviva-js-replay
 ```
+
+**Version compatibility:** Cohort Replay **v1.0.4 or later** is required when integrating with `@convivainc/conviva-js-appanalytics` v2.2.0 or later (see https://github.com/Conviva/conviva-js-replay/releases/tag/v1.0.4). Earlier replay versions are not compatible with DPI v2.2.0+ for session synchronization.
 
 Replay must initialize **before** the App Analytics SDK. Incorrect order will break replay.
 
