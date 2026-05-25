@@ -36,7 +36,7 @@ yarn add @convivainc/conviva-js-appanalytics
 ```
 <!-- ::: -->
 
-**Note**: For script-based integrations, refer [Conviva JS Script DPI SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines.
+**Note**: For script-based integrations, refer [Conviva JS Script DPI SDK](https://github.com/Conviva/conviva-js-script-appanalytics) for guidelines. For Google Tag Manager–based integrations, refer to the [Conviva DPI JS SDK GTM template](https://tagmanager.google.com/gallery/#/owners/Conviva/templates/conviva-dpi-js-sdk-gtm).
  <!--eof-self-serve--> 
 
 ### 2. Initialization
