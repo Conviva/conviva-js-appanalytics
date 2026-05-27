@@ -6,6 +6,7 @@
 * Soft Navigation `is_active` field on `conviva_soft_navigation`: indicates whether the page was in the foreground when the soft navigation completed. Useful for downstream attribution of background vs. active navigations.
 * Fix: Soft navigations that completed while the page was in a background / hidden tab were previously buffered and emitted only when the tab returned to the foreground, which inflated `load_time` with the time the tab spent hidden. They are now emitted at the correct time even in the background, with `is_active: false`, so `load_time` reflects only the actual navigation duration.
 * Fix: Diagnostic Info schema bumped to 1-0-5 so the `rcv` (remote config version) field is declared `string` (matching what the SDK actually sends in dotted-numeric form, e.g. `"2.0.0.1"`). Previously the field was declared `number` in 1-0-4 and DI events were rejected by schema validation.
+* Checkbox checked state auto-collected on click: when a user clicks an `<input type="checkbox">`, the SDK now captures the `checked` field (`"true"` or `"false"`) on the click event, reflecting the actual state of the checkbox at the moment of interaction. This allows platforms using checkbox / toggle / switch controls to track state changes without custom instrumentation.
 
 ## 2.1.0 (29/APR/2026)
 * Scroll Depth Tracking: Automatically measures how far users scroll down each page, firing events at configurable depth milestones (25%, 50%, 75%, 100% by default). Also fires a scroll_reset events when orientation / size of page changes.
