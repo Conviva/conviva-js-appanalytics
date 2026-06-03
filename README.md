@@ -439,22 +439,22 @@ convivaAppTracker({
 });
 ```
 
-<details>
-    <summary><b>The table of predefined metadata keys for deviceMetadata</b></summary>
-
+**Predefined metadata keys for deviceMetadata:**
 
 | **Key**                    | **Type**                                | **Description**                                                                                                              | **Example Values**                                                                          |
 | ---------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
 | DeviceBrand            | string                              | Brand of the device                                                                                                      | `"Comcast"`, `"LG"`, `"Google"`, `"Vizio"`                                              |
 | DeviceManufacturer     | string                              | Manufacturer of the device                                                                                               | `"Sony"`, `"Comcast"`, `"Google"`, `"Microsoft"`                                        |
 | DeviceModel            | string                              | Model of the device                                                                                                      | `"Comcast Flex"`, `"UTU7000_KA"`, `"Xbox One"`                                          |
-| DeviceType             | Prescribed values of DeviceType     | Type of the device. Only allows the DeviceType values and discards any other string values                               | DESKTOP, Console, Mobile (see [table below](#devicecategory-pre-defined-string-values)) |
+| DeviceType             | Prescribed values of DeviceType     | Type of the device. Must be one of the prescribed DeviceType values (see [table below](#devicetype-pre-defined-string-values)). Invalid values are reported as `INVALID: <value>`. | DESKTOP, Console, SmartTV |
 | DeviceVersion          | string                              | Device firmware version                                                                                                  | `"10"`, `"9"`                                                                           |
 | OperatingSystemName    | string                              | Name of the operating system used by the device, in uppercase                                                            | `"Tizen"`, `"webOS"`, `"Vizio`", `"Linux`", `"Xbox OS"`, `"Chrome OS"`                  |
 | OperatingSystemVersion | string                              | Version of the operating system used by the device                                                                       | `"10.10.1"`, `"8.1"`, `"T-INFOLINK2012-1012"`, `"1.56.500000"`                          |
-| DeviceCategory         | Prescribed values of DeviceCategory | Device category to which the used device belongs. Only allows DeviceCategory values and discards any other string values | WEB, AND, PS (see [table below](#devicetype-pre-defined-string-values))                 |
+| DeviceCategory         | Prescribed values of DeviceCategory | Device category to which the used device belongs. Must be one of the prescribed DeviceCategory values (see [table below](#devicecategory-pre-defined-string-values)). Invalid values are reported as `INVALID: <value>`. | SAMSUNGTV, LGTV, VIDAA, WEB |
 | FrameworkName          | string                              | Application framework name                                                                                               | `"React TV"`, `"LightningJS"`, `"Angular"`                                              |
-| FrameworkVersion       | string                              | Application framework version                                                                                            | `"1.2.3"`                                                                               |     |
+| FrameworkVersion       | string                              | Application framework version                                                                                            | `"1.2.3"`                                                                               |
+
+For `DeviceCategory` and `DeviceType`, use only the prescribed values listed below. If a value outside the prescribed list is provided, the sensor reports it as `INVALID: <value>` — for example, setting `DeviceCategory` to `"TV"` results in `"INVALID: TV"` in the payload. Use the correct prescribed value instead — for example, `VIDAA` for Hisense Vidaa TVs, `SAMSUNGTV` for Samsung TVs, or `LGTV` for LG TVs.
 
 #### DeviceCategory Pre-defined String Values:
 
@@ -490,8 +490,6 @@ convivaAppTracker({
 | SmartTV | The device is a smart TV.                    |
 | Vehicle | The device is a vehicle infotainment system. |
 | Other   | Other device types.                          |
-
-</details>
 
 </details>
 
