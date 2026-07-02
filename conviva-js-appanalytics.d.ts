@@ -127,6 +127,14 @@ declare function setClientId(clientId: string): void;
  */
 declare function setConversationId(conversationId: string, trackers?: Array<string>): void;
 /**
+ * Set Message ID
+ * A classic style for setting message ID for baggage headers
+ *
+ * @param messageId - The message ID string
+ * @param trackers - The tracker identifiers which the configuration will be applied to
+ */
+declare function setMessageId(messageId: string, trackers?: Array<string>): void;
+/**
  * Manually log a button click
  *
  * @param event - The event information
@@ -145,4 +153,4 @@ declare function trackFormSubmitSuccess(formId: string, trackers?: Array<string>
 declare function trackFormSubmitError(formId: string, errorType: string, trackers?: Array<string>): void;
 declare function trackFormValidationError(formId: string, fieldName: string, errorType: string, trackers?: Array<string>): void;
 declare function trackFormView(formId: string, trackers?: Array<string>): void;
-export { convivaAppTracker, BrowserTracker, TrackerConfiguration, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, version, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, FlushBufferConfiguration, PageViewEvent, EnableAnonymousTrackingConfiguration, DisableAnonymousTrackingConfiguration, AnonymousTrackingOptions, ClearUserDataConfiguration, ConditionalContextProvider, ContextPrimitive, SelfDescribingEvent, SelfDescribingJson, CommonEventProperties, StructuredEvent, CustomEvent, ContextGenerator, FilterProvider, RuleSetProvider, ContextEvent, ContextFilter, RuleSet, ErrorEventProperties, CustomTags, RequestDetails, ResponseDetails, RevenueEvent, RevenueEventItem, setReferrerUrl, setCustomUrl, setDocumentTitle, setUserId, trackPageView, trackCustomEvent, trackRevenueEvent, trackNetworkRequest, setCustomTags, unsetCustomTags, cleanup, getClientId, setClientId, setConversationId, trackButtonClick, trackLinkClick, trackError, trackFormSubmitSuccess, trackFormSubmitError, trackFormValidationError, trackFormView };
+export { convivaAppTracker, BrowserTracker, TrackerConfiguration, CookieSameSite, Platform, EventMethod, StateStorageStrategy, ConvivaDeviceMetadata, version, ActivityTrackingConfiguration, ActivityTrackingConfigurationCallback, ActivityCallback, ActivityCallbackData, BrowserPlugin, BrowserPluginConfiguration, BuiltInContexts, FlushBufferConfiguration, PageViewEvent, EnableAnonymousTrackingConfiguration, DisableAnonymousTrackingConfiguration, AnonymousTrackingOptions, ClearUserDataConfiguration, ConditionalContextProvider, ContextPrimitive, SelfDescribingEvent, SelfDescribingJson, CommonEventProperties, StructuredEvent, CustomEvent, ContextGenerator, FilterProvider, RuleSetProvider, ContextEvent, ContextFilter, RuleSet, ErrorEventProperties, CustomTags, RequestDetails, ResponseDetails, RevenueEvent, RevenueEventItem, setReferrerUrl, setCustomUrl, setDocumentTitle, setUserId, trackPageView, trackCustomEvent, trackRevenueEvent, trackNetworkRequest, setCustomTags, unsetCustomTags, cleanup, getClientId, setClientId, setConversationId, setMessageId, trackButtonClick, trackLinkClick, trackError, trackFormSubmitSuccess, trackFormSubmitError, trackFormValidationError, trackFormView };

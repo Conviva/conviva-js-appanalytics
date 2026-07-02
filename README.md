@@ -538,7 +538,7 @@ trackNetworkRequest({ requestDetails, responseDetails });
 <!--self-serve-custom-event-->
 <summary><b>Form Tracking</b></summary>
 
-The SDK can automatically track form interactions on a page when this feature is enabled for your account via Conviva remote configuration.
+The SDK can automatically track form interactions on a page. Form auto-collection is enabled by default via Conviva remote configuration; disable with `formcc.en: false` if not needed.
 
 **Manual form APIs**
 
@@ -705,7 +705,7 @@ Conviva automatically collects rich set of app performance metrics through app e
 | Core Web Vitals (LCP, INP, CLS) | At pagehide/visibilitychange. LCP: Chromium, Firefox. INP, CLS: Chromium. [Refer web-vitals](https://www.npmjs.com/package/web-vitals/v/5.1.0) |
 | Supplementary Web Vitals (FCP, TTFB) | Early in page load, once after navigation. Chromium, Firefox, Safari. Enabled when both `webVitals.enabled: true` and `webVitals.enabledAdditionalMetrics: true` in remote config. |
 | form_tracking                        | When form: start, field-blur, submit, validation(only Html5 Validation) events occur. Automatically collects form life cycle events. Enabled when `formcc.en: true`. See [Form Tracking](#more-features) for more details
-| scroll_tracking                      | When the user crosses a configured scroll-depth threshold or when a viewport resize / orientation change resets milestone state this event get triggered. Automatically captures scroll milestones, scroll resets, and scroll depth. Reports viewport width, page height, page width, scroll position (scrollY), and related metrics.Disabled by default; can be enabled via remote configuration. |
+| scroll_tracking                      | When the user crosses a configured scroll-depth threshold or when a viewport resize / orientation change resets milestone state this event get triggered. Automatically captures scroll milestones, scroll resets, and scroll depth. Reports viewport width, page height, page width, scroll position (scrollY), and related metrics. Enabled by default; disable via remote configuration (`scrollsCollection.enabled: false`). |
 
 To learn about the default metrics for analyzing the native and web applications performance, such as App Crashes, Avg Screen Load Time, and Page Loads, refer to the [App Experience Metrics](https://pulse.conviva.com/learning-center/content/eco/eco_metrics.html) page in the Learning Center.
 

@@ -65,6 +65,8 @@ import {
   getClientId,          // [OPTIONAL] Retrieve Conviva client ID — only for special use cases (e.g. multi-domain)
   setClientId,          // [OPTIONAL] Provide client ID — only for special use cases (e.g. multi-domain)
   trackNetworkRequest,  // [OPTIONAL] Manually track network requests — implement only when explicitly requested
+  setConversationId,    // [OPTIONAL] Set conversation ID for W3C baggage headers — implement only when explicitly requested
+  setMessageId,         // [OPTIONAL] Set message ID for W3C baggage headers — implement only when explicitly requested
   trackFormView,             // [OPTIONAL] Report a form view — implement only when explicitly requested
   trackFormSubmitSuccess,    // [OPTIONAL] Report a successful form submission — implement only when explicitly requested
   trackFormSubmitError,      // [OPTIONAL] Report a failed form submission — implement only when explicitly requested
