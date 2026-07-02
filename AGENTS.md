@@ -348,11 +348,31 @@ convivaAppTracker({
   convivaCustomerKey: "CUSTOMER_KEY",
   appVersion: "APP_VERSION",
   deviceMetadata: {
+    [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "SAMSUNGTV",
     [ConvivaDeviceMetadata.DEVICE_TYPE]: "SmartTV",
     [ConvivaDeviceMetadata.DEVICE_BRAND]: "Samsung"
   }
 });
 ```
+
+## Prescribed values — DeviceCategory and DeviceType are enums
+
+`DeviceCategory` and `DeviceType` are validated against a fixed enum. Agents must never invent values, lowercase them, or pass free-form strings like `"TV"`, `"Hisense"`, or `"SmartTV-Vidaa"`.
+
+**`DeviceCategory` — pass exactly one of:**
+
+`AND` (Android), `APL` (Apple), `CHR` (Chromecast), `DSKAPP` (Desktop app), `KAIOS`, `LGTV` (LG TV), `LNX` (Linux STB/TV), `NINTENDO`, `PS` (PlayStation), `RK` (Roku), `SAMSUNGTV` (Samsung TV), `SIMULATOR`, `VIDAA` (Hisense Vidaa), `VIZIOTV` (Vizio SmartCast), `WEB` (in-browser HTML5), `WIN` (Windows handheld), `XB` (Xbox).
+
+**`DeviceType` — pass exactly one of:**
+
+`DESKTOP`, `Console`, `Settop`, `Mobile`, `Tablet`, `SmartTV`, `Vehicle`, `Other`.
+
+**Invalid value behavior — agents must understand this:**
+
+- Invalid `DeviceCategory` → reported in payload as `"INVALID: <value>"` (e.g. `"TV"` → `"INVALID: TV"`). This breaks device classification in Pulse and is the most common DPI integration mistake.
+- Invalid `DeviceType` → omitted from the payload entirely (`dvt` is not set).
+
+When the developer describes the target device in free form (e.g. "Hisense Vidaa TV", "LG webOS", "Roku"), agents must translate to the correct prescribed `DeviceCategory` value (`VIDAA`, `LGTV`, `RK`) before generating code. If the developer's device does not map cleanly to a prescribed value, ask the developer rather than guessing.
 
 ---
 
@@ -425,6 +445,19 @@ Do NOT implement `trackCustomEvent` or `trackError` proactively — only add the
 Do NOT implement `getClientId` or `setClientId` in a standard integration — these are for special use cases only (e.g. multi-domain client ID synchronization).
 
 Do NOT implement `trackNetworkRequest`, `setCustomTags`, `unsetCustomTags`, or `ConvivaDeviceMetadata` proactively — only add them when explicitly requested by the developer.
+
+Do NOT invent `DeviceCategory` or `DeviceType` values. Pass only the prescribed enum values listed in the Device Metadata section. Invalid `DeviceCategory` values (e.g. `"TV"`, `"Hisense"`, lowercase variants) are emitted as `"INVALID: <value>"` and break Pulse device classification:
+
+```js
+// WRONG
+deviceMetadata: { [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "TV" }       // invalid → "INVALID: TV"
+deviceMetadata: { [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "Hisense" }  // invalid → "INVALID: Hisense"
+deviceMetadata: { [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "samsungtv" } // invalid → wrong case
+
+// CORRECT
+deviceMetadata: { [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "VIDAA" }     // Hisense Vidaa TV
+deviceMetadata: { [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "SAMSUNGTV" } // Samsung TV
+```
 
 Do NOT implement `trackFormView`, `trackFormSubmitSuccess`, `trackFormSubmitError`, or `trackFormValidationError` proactively — form tracking is auto-collected and remotely controlled; only add the manual APIs when the developer explicitly asks for them.
 
