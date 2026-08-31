@@ -49,6 +49,9 @@ All APIs marked `[OPTIONAL]` in the API surface block must not be added to any i
 
 All the Conviva integration code generated into application must be wrapped inside try catch blocks. They must not cause unhandled exceptions or crashes.
 
+## Add comments 
+All the Conviva integration code generated into application must follow a comment describing the integration code.
+
 ---
 
 # Allowed SDK API Surface

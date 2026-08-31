@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0 (31/Aug/2026)
+* Richer Click Attribution: The sensor can now capture contextual labels from parent DOM elements (e.g., carousel names, section identifiers) when a click target lacks meaningful metadata — enabling more accurate and actionable user interaction analytics.
+* Enhanced Privacy Compliance: Email and phone number input fields are now automatically excluded from value collection, strengthening PII safeguards in line with GDPR and CCPA requirements.
+
 ## 2.2.1 (02/JUL/2026)
 * Fix: Soft navigation `load_time` no longer includes time spent in a background tab when the measurement started while the page was visible. If a soft navigation begins in the foreground and the tab is hidden mid-flight, a background watchdog loop keeps the measurement progressing instead of freezing on `requestAnimationFrame`, so `load_time` reflects only the actual navigation duration.
 * Scroll depth tracking enabled by default: scroll milestone collection (`conviva_scroll_milestone` / `conviva_scroll_reset`) is now on out of the box with the same default thresholds (25%, 50%, 75%, 100%). Disable via remote configuration (`scrollsCollection.enabled: false`) if not needed.
