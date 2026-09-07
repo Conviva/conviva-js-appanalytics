@@ -466,7 +466,7 @@ deviceMetadata: { [ConvivaDeviceMetadata.DEVICE_CATEGORY]: "SAMSUNGTV" } // Sams
 
 Do NOT implement `trackFormView`, `trackFormSubmitSuccess`, `trackFormSubmitError`, or `trackFormValidationError` proactively — form tracking is auto-collected and remotely controlled; only add the manual APIs when the developer explicitly asks for them.
 
-Do NOT invent form-tracking configuration flags (e.g. `formTracking`, `trackFields`, `fieldDenylist`) inside `convivaAppTracker({ configs: ... })` — form tracking is controlled by Conviva remote configuration, not by client-side options.
+Do NOT invent form-tracking configuration flags (e.g. `formTracking`, `trackFields`, `fieldDenylist`, `trackShadowDom`) inside `convivaAppTracker({ configs: ... })` — form tracking is controlled by Conviva remote configuration, not by client-side options.
 
 ---
 

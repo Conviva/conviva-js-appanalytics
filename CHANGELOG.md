@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.1 (07/Sep/2026)
+* Shadow DOM form tracking: Form fields inside open shadow roots (for example Salesforce LWC) now emit the same form lifecycle events as light-DOM forms — field blur, change, submit, and validation. Closed shadow roots stay out of reach. On by default; disable via remote configuration (`formcc.trackShadowDom: false`) if not needed.
+* Fix: Leaving a form field by moving focus out of the window no longer emits a second `conviva_form_field_blur` when focus later returns to another field.
+
+
 ## 2.3.0 (31/Aug/2026)
 * Richer Click Attribution: The sensor can now capture contextual labels from parent DOM elements (e.g., carousel names, section identifiers) when a click target lacks meaningful metadata — enabling more accurate and actionable user interaction analytics.
 * Enhanced Privacy Compliance: Email and phone number input fields are now automatically excluded from value collection, strengthening PII safeguards in line with GDPR and CCPA requirements.
