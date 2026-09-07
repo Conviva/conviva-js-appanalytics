@@ -538,7 +538,7 @@ trackNetworkRequest({ requestDetails, responseDetails });
 <!--self-serve-custom-event-->
 <summary><b>Form Tracking</b></summary>
 
-The SDK can automatically track form interactions on a page. Form auto-collection is enabled by default via Conviva remote configuration; disable with `formcc.en: false` if not needed.
+The SDK can automatically track form interactions on a page. Form auto-collection is enabled by default via Conviva remote configuration; disable with `formcc.en: false` if not needed. Open shadow roots are included automatically. Closed shadow roots are not. Disable shadow-root collection with `formcc.trackShadowDom: false` if not needed.
 
 **Manual form APIs**
 
