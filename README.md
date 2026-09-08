@@ -739,7 +739,7 @@ To ensure metrics reflect the updates, please review and update your event/metri
 <details>
   <summary><b>form_tracking</b></summary>
 
-Form auto-collection includes fields inside **open** shadow roots (for example Salesforce LWC). **Closed** shadow roots are not collected — the browser does not expose those fields to page listeners.
+Form auto-collection includes fields inside **open** shadow roots. **Closed** shadow roots are not collected — the browser does not expose those fields to page listeners.
 
 Disable shadow-root collection with `formcc.trackShadowDom: false` if not needed. Validation events cover HTML5 constraint validation only.
 
